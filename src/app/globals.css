@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+/* Custom Koblenz Font */
+@font-face {
+  font-family: 'Koblenz';
+  src: url('/fonts/Koblenz.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom Cause Variable Font */
+@font-face {
+  font-family: 'Cause';
+  src: url('/fonts/Cause-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom Caveat Variable Font */
+@font-face {
+  font-family: 'Caveat';
+  src: url('/fonts/Caveat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #000000;
   --foreground: #FFFFFF;
@@ -15,11 +42,24 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Smooth scrolling for all scrollable elements */
+* {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
+  background-image: url('/background.jpg');
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--foreground);
+  min-height: 100vh;
 }
 
 /* Custom scrollbar */
@@ -51,7 +91,8 @@ body {
 
 /* Wood texture background */
 .wood-texture {
-  background-color: #0a0705;
-  background-image:
-    linear-gradient(90deg, rgba(15, 12, 8, 0.9) 0%, rgba(20, 16, 12, 0.8) 50%, rgba(15, 12, 8, 0.9) 100%);
+  background-color: #000;
+  background-image: url('/bg-main.jpg');
+  background-size: cover;
+  background-position: center;
 }

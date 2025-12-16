@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Masonry from "@/components/Masonry";
 import {
   Search,
@@ -14,6 +15,8 @@ import {
   Music,
   GlassWater,
   Users,
+  Menu,
+  X,
 } from "lucide-react";
 
 // Animation Variants
@@ -33,7 +36,7 @@ const staggerContainer = {
 // ========== TOP BAR ==========
 function TopBar() {
   return (
-    <div className="bg-black border-b border-white/10">
+    <div className="hidden md:block bg-black/40 border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-2 flex justify-end items-center gap-6">
         <span className="text-xs uppercase tracking-wider text-[#A1A1AA]">
           Follow Us
@@ -49,62 +52,153 @@ function TopBar() {
 
 // ========== NAVBAR ==========
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = ["HOME", "MENU", "GALLERY", "CONTACT US"];
 
   return (
-    <nav className="absolute top-[41px] left-0 right-0 z-40 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex flex-col">
-          <h1
-            className="text-2xl md:text-3xl text-[#D4AF37] tracking-[0.2em]"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            THE BAR
-          </h1>
-          <span
-            className="text-[10px] tracking-[0.3em] text-white/60"
-            style={{ fontFamily: "var(--font-lato)" }}
-          >
-            EST. NISEKO 2016
-          </span>
-        </div>
-
-        {/* Center Links */}
-        <div className="hidden lg:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(" ", "-")}`}
-              className="text-xs tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors"
+    <>
+      <nav className="absolute top-0 md:top-[41px] left-0 right-0 z-40 bg-black/60 md:bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-6 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex flex-col">
+            <h1
+              className="text-xl md:text-3xl text-[#D4AF37] tracking-[0.2em]"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              THE BAR
+            </h1>
+            <span
+              className="text-[8px] md:text-[10px] tracking-[0.3em] text-white/60"
               style={{ fontFamily: "var(--font-lato)" }}
             >
-              {link}
-            </a>
-          ))}
-        </div>
+              EST. NISEKO 2016
+            </span>
+          </div>
 
-        {/* Search Icon */}
-        <button className="w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center hover:bg-[#D4AF37] group transition-colors">
-          <Search
-            size={18}
-            className="text-[#D4AF37] group-hover:text-black transition-colors"
-          />
-        </button>
-      </div>
-    </nav>
+          {/* Center Links - Desktop */}
+          <div className="hidden lg:flex items-center gap-8">
+            {links.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(" ", "-")}`}
+                className="text-xs tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors"
+                style={{ fontFamily: "var(--font-lato)" }}
+              >
+                {link}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button & Search */}
+          <div className="flex items-center gap-3">
+            {/* Search Icon - Hidden on mobile */}
+            <button className="hidden md:flex w-10 h-10 rounded-full border border-[#D4AF37] items-center justify-center hover:bg-[#D4AF37] group transition-colors">
+              <Search
+                size={18}
+                className="text-[#D4AF37] group-hover:text-black transition-colors"
+              />
+            </button>
+
+            {/* Hamburger Menu - Mobile Only */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
+            >
+              {isMenuOpen ? (
+                <X
+                  size={18}
+                  className="text-[#D4AF37] group-hover:text-black transition-colors"
+                />
+              ) : (
+                <Menu
+                  size={18}
+                  className="text-[#D4AF37] group-hover:text-black transition-colors"
+                />
+              )}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-black/95 lg:hidden"
+          >
+            <div className="flex flex-col items-center justify-center h-full">
+              {/* Close Button */}
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="absolute top-6 right-4 w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
+              >
+                <X
+                  size={18}
+                  className="text-[#D4AF37] group-hover:text-black transition-colors"
+                />
+              </button>
+
+              {/* Logo */}
+              <div className="text-center mb-12">
+                <h2
+                  className="text-3xl text-[#D4AF37] tracking-[0.2em]"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  THE BAR
+                </h2>
+                <span
+                  className="text-[10px] tracking-[0.3em] text-white/60"
+                  style={{ fontFamily: "var(--font-lato)" }}
+                >
+                  EST. NISEKO 2016
+                </span>
+              </div>
+
+              {/* Menu Links */}
+              <nav className="flex flex-col items-center gap-8">
+                {links.map((link, index) => (
+                  <motion.a
+                    key={link}
+                    href={`#${link.toLowerCase().replace(" ", "-")}`}
+                    onClick={() => setIsMenuOpen(false)}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="text-lg tracking-[0.3em] text-white hover:text-[#D4AF37] transition-colors"
+                    style={{ fontFamily: "var(--font-lato)" }}
+                  >
+                    {link}
+                  </motion.a>
+                ))}
+              </nav>
+
+              {/* Open Hours */}
+              <div className="mt-12 text-center">
+                <p className="text-[#A1A1AA] text-sm" style={{ fontFamily: "var(--font-lato)" }}>
+                  Open at 6 PM to 2:00 AM
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
 // ========== HERO SECTION ==========
 function HeroSection() {
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden bg-black">
+    <section id="home" className="relative h-screen w-full overflow-hidden">
 
       {/* 1. Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/hero-bg.jpg"
+          src="/bg-main.jpg"
           alt="Little Lao Shop Sign"
           className="w-full h-full object-cover object-center"
         />
@@ -118,47 +212,49 @@ function HeroSection() {
       </div>
 
       {/* 3. Content */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
-
-        {/* Small Tagline */}
+      <div className="relative z-10 w-full h-full">
+        {/* Small Tagline - Absolute */}
         <motion.p
           variants={fadeUp}
-          className="text-gray-300 tracking-[0.3em] text-xs md:text-sm uppercase mb-4"
-          style={{ fontFamily: "var(--font-lato)" }}
+          className="absolute text-gray-300 tracking-[0.3em] text-xs md:text-sm uppercase w-full text-center"
+          initial="hidden"
+          animate="visible"
+          style={{ fontFamily: "var(--font-lato)", top: '35%', left: 0 }}
         >
           Original Taste of Luang Prabang
         </motion.p>
 
-        {/* Main Title - LITTLE LAO */}
+        {/* Main Title - LITTLE LAO - Absolute */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl md:text-7xl lg:text-8xl text-[#D4AF37] drop-shadow-2xl"
-          style={{ fontFamily: "var(--font-cinzel)" }}
+          className="absolute text-5xl md:text-7xl lg:text-8xl text-[#D4AF37] drop-shadow-2xl w-full text-center"
+          initial="hidden"
+          animate="visible"
+          style={{ fontFamily: "var(--font-cinzel)", top: '40%', left: 0 }}
         >
           LITTLE LAO
         </motion.h1>
 
-        {/* Decorative Divider */}
+        {/* Decorative Divider - Absolute */}
         <motion.div
           variants={fadeUp}
-          className="w-24 h-1 bg-[#D4AF37] my-6 rounded-full opacity-80"
+          className="absolute bg-[#D4AF37] h-1 rounded-full opacity-80 left-1/2 -translate-x-1/2"
+          initial="hidden"
+          animate="visible"
+          style={{ width: '96px', top: '53%' }}
         />
 
-        {/* Subtitle */}
+        {/* Subtitle - Absolute */}
         <motion.p
           variants={fadeUp}
-          className="text-white text-xl md:text-3xl italic tracking-wide"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          className="absolute text-white text-xl md:text-3xl italic tracking-wide w-full text-center"
+          initial="hidden"
+          animate="visible"
+          style={{ fontFamily: "var(--font-playfair)", top: '56%', left: 0 }}
         >
           Bar and Culture
         </motion.p>
-
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -169,7 +265,7 @@ function AboutSection() {
     <section id="about" className="flex flex-col lg:flex-row min-h-[80vh]">
       {/* Left - Text */}
       <motion.div
-        className="lg:w-1/2 wood-texture flex items-center justify-center px-8 md:px-16 py-20"
+        className="lg:w-1/2 bg-black/40 flex items-center justify-center px-8 md:px-16 py-20"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -254,7 +350,7 @@ const events = [
 
 function EventsSection() {
   return (
-    <section id="events" className="bg-black py-20">
+    <section id="events" className="bg-black/40 py-20">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -321,39 +417,18 @@ function EventsSection() {
 }
 
 // ========== MENU SECTION ==========
-const menuItems = [
+const signatureDrinks = [
   {
-    name: "Black Nikka Clear",
-    volume: "100ml",
-    description:
-      "Nikka Black Clear brings together vintages of carefully selected malt and grain whiskies. Light and smooth with delicate sweetness.",
+    name: "Bar Bin",
+    ingredients: "Burnt Coconut Whiskey / Coconut Juice / Paksong Coffee / Jackfruit Foam",
   },
   {
-    name: "Yamazaki 12 Year",
-    volume: "100ml",
-    description:
-      "Suntory's flagship single malt with notes of dried fruit, vanilla, and subtle oak. A true Japanese masterpiece.",
+    name: "Little Lao Eggnog",
+    ingredients: "Hine VSOP Cognac / Coconut Cream / Heavy Cream / Mak Mart Peppercorn / Egg",
   },
   {
-    name: "Hibiki Harmony",
-    volume: "100ml",
-    description:
-      "A beautifully balanced blend with silky taste featuring honey, orange peel, and a long, sweet finish.",
-  },
-];
-
-const craftSpirits = [
-  {
-    name: "Roku Japanese Gin",
-    volume: "100ml",
-    description:
-      "Crafted with six unique Japanese botanicals including sakura flower and yuzu peel.",
-  },
-  {
-    name: "Nikka Coffey Vodka",
-    volume: "100ml",
-    description:
-      "Exceptionally smooth vodka distilled using traditional Coffey stills.",
+    name: "Lao Mulled Wine",
+    ingredients: "Côte du Rhône / Mak Mont Mulberry / Orange / Mak Toom Bale / Star Anise",
   },
 ];
 
@@ -361,48 +436,264 @@ function MenuSection() {
   return (
     <section
       id="menu"
-      className="py-20 relative"
+      className="py-16 md:py-24 relative"
       style={{
-        background: "rgba(0, 0, 0, 0.85)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)",
+        background: "rgba(0, 0, 0, 0.6)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-16">
-          <motion.div
-            className="lg:w-3/5"
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="relative min-h-[800px]">
+
+          {/* Title - Absolute positioned */}
+          <motion.h3
+            className="absolute text-3xl md:text-4xl lg:text-5xl text-[#D4AF37]"
+            style={{ fontFamily: "'Caveat'", left: '210px', top: '50px' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3
-              className="text-4xl text-[#D4AF37]"
-              style={{ fontFamily: "var(--font-great-vibes)", marginLeft: "300px" }}
+            Our Signature Drinks
+          </motion.h3>
+
+          {/* Menu Item 1 - Negroni Classico - Absolute positioned */}
+          <motion.div
+            className="absolute group"
+            style={{ left: '150px', top: '200px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="mb-2 inline-block">
+              <h4
+                className="text-xl md:text-2xl text-white whitespace-nowrap group-hover:text-[#D4AF37] transition-colors tracking-wide"
+                style={{ fontFamily: "'Koblenz'" }}
+              >
+                {signatureDrinks[0].name}
+              </h4>
+              <div className="w-full border-b border-solid border-[#A1A1AA]/60 mt-1" />
+            </div>
+            <p
+              className="text-[#A1A1AA] text-sm md:text-base leading-relaxed"
+              style={{ fontFamily: "'Cause'" }}
             >
-              Our Signature Drinks
-            </h3>
+              {signatureDrinks[0].ingredients}
+            </p>
           </motion.div>
 
-          {/* Right - Image */}
+          {/* Menu Item 2 - Old Fashioned - Absolute positioned */}
           <motion.div
-            className="lg:w-2/5"
-            initial={{ opacity: 0, x: 50 }}
+            className="absolute group"
+            style={{ left: '150px', top: '330px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <div className="mb-2 inline-block">
+              <h4
+                className="text-xl md:text-2xl text-white whitespace-nowrap group-hover:text-[#D4AF37] transition-colors tracking-wide"
+                style={{ fontFamily: "'Koblenz'" }}
+              >
+                {signatureDrinks[1].name}
+              </h4>
+              <div className="w-full border-b border-solid border-[#A1A1AA]/60 mt-1" />
+            </div>
+            <p
+              className="text-[#A1A1AA] text-sm md:text-base leading-relaxed"
+              style={{ fontFamily: "'Cause'" }}
+            >
+              {signatureDrinks[1].ingredients}
+            </p>
+          </motion.div>
+
+          {/* Menu Item 3 - Espresso Martini - Absolute positioned */}
+          <motion.div
+            className="absolute group"
+            style={{ left: '150px', top: '460px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="mb-2 inline-block">
+              <h4
+                className="text-xl md:text-2xl text-white whitespace-nowrap group-hover:text-[#D4AF37] transition-colors tracking-wide"
+                style={{ fontFamily: "'Koblenz'" }}
+              >
+                {signatureDrinks[2].name}
+              </h4>
+              <div className="w-full border-b border-solid border-[#A1A1AA]/60 mt-1" />
+            </div>
+            <p
+              className="text-[#A1A1AA] text-sm md:text-base leading-relaxed"
+              style={{ fontFamily: "'Cause'" }}
+            >
+              {signatureDrinks[2].ingredients}
+            </p>
+          </motion.div>
+
+          {/* Bartender Image - Absolute positioned */}
+          <motion.div
+            className="absolute lg:w-[45%] w-full"
+            style={{ right: '50px', top: '100px' }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            style={{ marginLeft: "-100px" }}
           >
-            <div className="relative h-[600px] w-[600px] rounded-lg overflow-hidden">
+            <div className="relative h-[280px] md:h-[400px] lg:h-[500px] w-full overflow-hidden">
               <img
                 src="/cocktail-menu.jpg"
-                alt="Bartender pouring cocktail"
-                className="w-full h-full object-cover"
+                alt="Signature cocktails"
+                className="w-full h-full object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </div>
           </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== FOOD MENU SECTION ==========
+const foodItems = [
+  {
+    name: "Laap Ped",
+    ingredients: "Minced Duck / Toasted Rice / Fresh Herbs / Fish Sauce / Lime",
+  },
+  {
+    name: "Khao Piak Sen",
+    ingredients: "Rice Noodles / Chicken Broth / Poached Chicken / Crispy Garlic / Spring Onion",
+  },
+  {
+    name: "Or Lam",
+    ingredients: "Buffalo Meat / Lao Eggplant / Sakaan Wood / Chili Paste / Dill",
+  },
+];
+
+function FoodMenuSection() {
+  return (
+    <section
+      id="food-menu"
+      className="pt-[500px] md:pt-[650px] pb-16 md:pb-24 relative"
+      style={{
+        background: "rgba(0, 0, 0, 0.6)",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="relative min-h-[800px]">
+
+          {/* Title - Absolute positioned */}
+          <motion.h3
+            className="absolute text-3xl md:text-4xl lg:text-5xl text-[#D4AF37]"
+            style={{ fontFamily: "'Caveat'", left: '210px', top: '0px' }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Signature Dishes
+          </motion.h3>
+
+          {/* Menu Item 1 - Laap Ped - Absolute positioned */}
+          <motion.div
+            className="absolute group"
+            style={{ left: '150px', top: '150px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="mb-2 inline-block">
+              <h4
+                className="text-xl md:text-2xl text-white whitespace-nowrap group-hover:text-[#D4AF37] transition-colors tracking-wide"
+                style={{ fontFamily: "'Koblenz'" }}
+              >
+                {foodItems[0].name}
+              </h4>
+              <div className="w-full border-b border-solid border-[#A1A1AA]/60 mt-1" />
+            </div>
+            <p
+              className="text-[#A1A1AA] text-sm md:text-base leading-relaxed"
+              style={{ fontFamily: "'Cause'" }}
+            >
+              {foodItems[0].ingredients}
+            </p>
+          </motion.div>
+
+          {/* Menu Item 2 - Khao Piak Sen - Absolute positioned */}
+          <motion.div
+            className="absolute group"
+            style={{ left: '150px', top: '280px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <div className="mb-2 inline-block">
+              <h4
+                className="text-xl md:text-2xl text-white whitespace-nowrap group-hover:text-[#D4AF37] transition-colors tracking-wide"
+                style={{ fontFamily: "'Koblenz'" }}
+              >
+                {foodItems[1].name}
+              </h4>
+              <div className="w-full border-b border-solid border-[#A1A1AA]/60 mt-1" />
+            </div>
+            <p
+              className="text-[#A1A1AA] text-sm md:text-base leading-relaxed"
+              style={{ fontFamily: "'Cause'" }}
+            >
+              {foodItems[1].ingredients}
+            </p>
+          </motion.div>
+
+          {/* Menu Item 3 - Or Lam - Absolute positioned */}
+          <motion.div
+            className="absolute group"
+            style={{ left: '150px', top: '410px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="mb-2 inline-block">
+              <h4
+                className="text-xl md:text-2xl text-white whitespace-nowrap group-hover:text-[#D4AF37] transition-colors tracking-wide"
+                style={{ fontFamily: "'Koblenz'" }}
+              >
+                {foodItems[2].name}
+              </h4>
+              <div className="w-full border-b border-solid border-[#A1A1AA]/60 mt-1" />
+            </div>
+            <p
+              className="text-[#A1A1AA] text-sm md:text-base leading-relaxed"
+              style={{ fontFamily: "'Cause'" }}
+            >
+              {foodItems[2].ingredients}
+            </p>
+          </motion.div>
+
+          {/* Image - Absolute positioned */}
+          <motion.div
+            className="absolute lg:w-[45%] w-full"
+            style={{ right: '0px', top: '100px' }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative h-[200px] md:h-[300px] lg:h-[380px] w-full rounded-3xl overflow-hidden bg-black/30 border-2 border-[#D4AF37]/30">
+              <img
+                src="/food-menu.jpg"
+                alt="Signature dishes"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
@@ -463,31 +754,30 @@ const galleryItems = [
 
 function GallerySection() {
   return (
-    <section id="gallery" className="bg-black py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+    <section id="gallery" className="relative min-h-[1000px] w-full bg-black/40">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative h-full">
+
+        {/* Header - Absolute Positioned */}
         <motion.div
-          className="text-center mb-12"
+          className="absolute text-center w-full"
+          style={{ top: '-100px', left: 0 }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <h3
-            className="text-5xl text-[#D4AF37] mb-4"
-            style={{ fontFamily: "var(--font-great-vibes)" }}
-          >
-            Our Gallery
-          </h3>
-          <p
-            className="text-[#A1A1AA] text-sm"
-            style={{ fontFamily: "var(--font-lato)" }}
+            className="text-xl md:text-3xl text-[#D4AF37] mb-2 md:mb-4"
+            style={{ fontFamily: "'Caveat'" }}
           >
             Moments captured at LITTLE LAO
-          </p>
+          </h3>
         </motion.div>
 
-        {/* Masonry Gallery */}
-        <div className="h-[800px] w-full">
+        {/* Masonry Gallery - Absolute Positioned */}
+        <div
+          className="absolute w-full"
+          style={{ top: '50px', left: 0, height: '800px' }}
+        >
           <Masonry
             items={galleryItems}
             animateFrom="bottom"
@@ -498,6 +788,7 @@ function GallerySection() {
             colorShiftOnHover={true}
           />
         </div>
+
       </div>
     </section>
   );
@@ -506,41 +797,41 @@ function GallerySection() {
 // ========== FOOTER ==========
 function Footer() {
   return (
-    <footer id="contact-us" className="bg-black pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer id="contact-us" className="bg-black/50 pt-12 md:pt-16 pb-6 md:pb-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Logo */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <h2
-            className="text-3xl text-[#D4AF37] tracking-[0.2em]"
+            className="text-2xl md:text-3xl text-[#D4AF37] tracking-[0.2em]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             THE BAR
           </h2>
           <p
-            className="text-xs tracking-[0.3em] text-[#D4AF37]/70 mt-1"
+            className="text-[10px] md:text-xs tracking-[0.3em] text-[#D4AF37]/70 mt-1"
             style={{ fontFamily: "var(--font-lato)" }}
           >
             EST. NISEKO 2016
           </p>
         </div>
 
-        {/* 5-Column Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
+        {/* Grid - Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 mb-10 md:mb-16">
           {/* Location */}
-          <div className="text-center lg:text-left">
+          <div className="text-center">
             <MapPin
-              size={40}
-              className="text-[#D4AF37] mx-auto lg:mx-0 mb-4"
+              size={32}
+              className="text-[#D4AF37] mx-auto mb-3 md:mb-4"
               strokeWidth={1}
             />
             <p
-              className="text-white text-sm mb-1"
+              className="text-white text-xs md:text-sm mb-1"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               123 Hirafu Street
             </p>
             <p
-              className="text-[#A1A1AA] text-sm"
+              className="text-[#A1A1AA] text-xs md:text-sm"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               Niseko, Hokkaido, Japan
@@ -548,26 +839,26 @@ function Footer() {
           </div>
 
           {/* Hours */}
-          <div className="text-center lg:text-left">
+          <div className="text-center">
             <Clock
-              size={40}
-              className="text-[#D4AF37] mx-auto lg:mx-0 mb-4"
+              size={32}
+              className="text-[#D4AF37] mx-auto mb-3 md:mb-4"
               strokeWidth={1}
             />
             <p
-              className="text-[#A1A1AA] text-sm"
+              className="text-[#A1A1AA] text-xs md:text-sm"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               Mon-Thurs: 6pm-1am
             </p>
             <p
-              className="text-[#A1A1AA] text-sm"
+              className="text-[#A1A1AA] text-xs md:text-sm"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               Fri: 6pm-2am
             </p>
             <p
-              className="text-[#A1A1AA] text-sm"
+              className="text-[#A1A1AA] text-xs md:text-sm"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               Sat: 3pm-2am
@@ -575,62 +866,62 @@ function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="text-center lg:text-left">
+          <div className="text-center">
             <Phone
-              size={40}
-              className="text-[#D4AF37] mx-auto lg:mx-0 mb-4"
+              size={32}
+              className="text-[#D4AF37] mx-auto mb-3 md:mb-4"
               strokeWidth={1}
             />
             <p
-              className="text-white text-sm mb-1"
+              className="text-white text-xs md:text-sm mb-1"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               +81 136 22 1234
             </p>
             <p
-              className="text-[#A1A1AA] text-sm"
+              className="text-[#A1A1AA] text-xs md:text-sm break-all"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               info@thebar-niseko.jp
             </p>
           </div>
 
-          {/* Social Icons 2x2 */}
+          {/* Social Icons */}
           <div className="text-center">
-            <div className="grid grid-cols-2 gap-4 max-w-[120px] mx-auto lg:mx-0">
+            <div className="flex justify-center gap-3">
               <a
                 href="#"
-                className="w-12 h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
+                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
               >
                 <Facebook
-                  size={20}
+                  size={18}
                   className="text-[#D4AF37] group-hover:text-black transition-colors"
                 />
               </a>
               <a
                 href="#"
-                className="w-12 h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
+                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
               >
                 <Twitter
-                  size={20}
+                  size={18}
                   className="text-[#D4AF37] group-hover:text-black transition-colors"
                 />
               </a>
               <a
                 href="#"
-                className="w-12 h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
+                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
               >
                 <Instagram
-                  size={20}
+                  size={18}
                   className="text-[#D4AF37] group-hover:text-black transition-colors"
                 />
               </a>
               <a
                 href="#"
-                className="w-12 h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
+                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
               >
                 <Youtube
-                  size={20}
+                  size={18}
                   className="text-[#D4AF37] group-hover:text-black transition-colors"
                 />
               </a>
@@ -638,14 +929,14 @@ function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="text-center lg:text-right col-span-2 md:col-span-1">
-            <nav className="flex flex-col gap-2">
+          <div className="text-center sm:col-span-2 lg:col-span-1">
+            <nav className="flex flex-wrap justify-center gap-4 lg:flex-col lg:gap-2">
               {["Menu", "About", "Gallery", "Events", "Contact Us"].map(
                 (link) => (
                   <a
                     key={link}
                     href={`#${link.toLowerCase().replace(" ", "-")}`}
-                    className="text-[#A1A1AA] text-sm hover:text-[#D4AF37] transition-colors"
+                    className="text-[#A1A1AA] text-xs md:text-sm hover:text-[#D4AF37] transition-colors"
                     style={{ fontFamily: "var(--font-lato)" }}
                   >
                     {link}
@@ -657,28 +948,28 @@ function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-white/10 mb-6" />
+        <div className="w-full h-px bg-white/10 mb-4 md:mb-6" />
 
         {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
           <p
-            className="text-[#A1A1AA] text-xs"
+            className="text-[#A1A1AA] text-[10px] md:text-xs text-center"
             style={{ fontFamily: "var(--font-lato)" }}
           >
             Copyright 2020. All Rights Reserved
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-3 md:gap-4">
             <a
               href="#"
-              className="text-[#A1A1AA] text-xs hover:text-white transition-colors"
+              className="text-[#A1A1AA] text-[10px] md:text-xs hover:text-white transition-colors"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               Privacy Policy
             </a>
-            <span className="text-[#A1A1AA] text-xs">|</span>
+            <span className="text-[#A1A1AA] text-[10px] md:text-xs">|</span>
             <a
               href="#"
-              className="text-[#A1A1AA] text-xs hover:text-white transition-colors"
+              className="text-[#A1A1AA] text-[10px] md:text-xs hover:text-white transition-colors"
               style={{ fontFamily: "var(--font-lato)" }}
             >
               Terms of Use
@@ -698,8 +989,9 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <MenuSection />
+      <FoodMenuSection />
       <GallerySection />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

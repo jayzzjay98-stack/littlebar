@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Great_Vibes, Lato, Cinzel_Decorative } from "next/font/google";
+import { Playfair_Display, Great_Vibes, Lato, Cinzel_Decorative, Quicksand } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -26,6 +26,12 @@ const cinzel = Cinzel_Decorative({
   weight: ["400", "700"],
 });
 
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "THE BAR | Est. Niseko 2016 - Premium Cocktails & Japanese Whisky",
   description:
@@ -41,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${greatVibes.variable} ${lato.variable} ${cinzel.variable} antialiased`}
+        className={`${playfair.variable} ${greatVibes.variable} ${lato.variable} ${cinzel.variable} ${quicksand.variable} antialiased`}
       >
         {children}
       </body>
