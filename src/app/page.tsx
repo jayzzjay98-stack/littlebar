@@ -198,7 +198,7 @@ function HeroSection() {
       {/* 1. Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/bg-main.jpg"
+          src="/bg-main.webp"
           alt="Little Lao Shop Sign"
           className="w-full h-full object-cover object-center"
         />
@@ -250,7 +250,7 @@ function HeroSection() {
           className="absolute text-white text-xl md:text-3xl italic tracking-wide w-full text-center"
           initial="hidden"
           animate="visible"
-          style={{ fontFamily: "var(--font-playfair)", top: '56%', left: 0 }}
+          style={{ fontFamily: "var(--font-lato)", top: '56%', left: 0 }}
         >
           Bar and Culture
         </motion.p>
@@ -442,8 +442,66 @@ function MenuSection() {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="relative min-h-[800px]">
+        {/* Mobile Layout (flexbox) */}
+        <div className="lg:hidden flex flex-col items-center">
+          {/* Title */}
+          <motion.h3
+            className="text-3xl md:text-4xl text-[#D4AF37] mb-8 text-center"
+            style={{ fontFamily: "'Caveat'" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Signature Drinks
+          </motion.h3>
 
+          {/* Image */}
+          <motion.div
+            className="w-full max-w-sm mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src="/cocktail-menu.webp"
+              alt="Signature cocktails"
+              className="w-full h-auto object-contain"
+            />
+          </motion.div>
+
+          {/* Menu Items */}
+          <div className="space-y-6 w-full max-w-md">
+            {signatureDrinks.map((drink, idx) => (
+              <motion.div
+                key={idx}
+                className="group text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <h4
+                  className="text-xl text-white group-hover:text-[#D4AF37] transition-colors tracking-wide mb-1"
+                  style={{ fontFamily: "'Koblenz'" }}
+                >
+                  {drink.name}
+                </h4>
+                <div className="w-24 mx-auto border-b border-[#A1A1AA]/60 mb-2" />
+                <p
+                  className="text-[#A1A1AA] text-sm leading-relaxed"
+                  style={{ fontFamily: "'Cause'" }}
+                >
+                  {drink.ingredients}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Layout (absolute positioning) */}
+        <div className="hidden lg:block relative min-h-[800px]">
           {/* Title - Absolute positioned */}
           <motion.h3
             className="absolute text-3xl md:text-4xl lg:text-5xl text-[#D4AF37]"
@@ -456,7 +514,7 @@ function MenuSection() {
             Our Signature Drinks
           </motion.h3>
 
-          {/* Menu Item 1 - Negroni Classico - Absolute positioned */}
+          {/* Menu Item 1 */}
           <motion.div
             className="absolute group"
             style={{ left: '150px', top: '200px' }}
@@ -482,7 +540,7 @@ function MenuSection() {
             </p>
           </motion.div>
 
-          {/* Menu Item 2 - Old Fashioned - Absolute positioned */}
+          {/* Menu Item 2 */}
           <motion.div
             className="absolute group"
             style={{ left: '150px', top: '330px' }}
@@ -508,7 +566,7 @@ function MenuSection() {
             </p>
           </motion.div>
 
-          {/* Menu Item 3 - Espresso Martini - Absolute positioned */}
+          {/* Menu Item 3 */}
           <motion.div
             className="absolute group"
             style={{ left: '150px', top: '460px' }}
@@ -534,7 +592,7 @@ function MenuSection() {
             </p>
           </motion.div>
 
-          {/* Bartender Image - Absolute positioned */}
+          {/* Image - Absolute positioned */}
           <motion.div
             className="absolute lg:w-[45%] w-full"
             style={{ right: '50px', top: '100px' }}
@@ -545,13 +603,12 @@ function MenuSection() {
           >
             <div className="relative h-[280px] md:h-[400px] lg:h-[500px] w-full overflow-hidden">
               <img
-                src="/cocktail-menu.jpg"
+                src="/cocktail-menu.webp"
                 alt="Signature cocktails"
                 className="w-full h-full object-contain"
               />
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
@@ -578,14 +635,72 @@ function FoodMenuSection() {
   return (
     <section
       id="food-menu"
-      className="pt-[500px] md:pt-[650px] pb-16 md:pb-24 relative"
+      className="py-16 md:py-24 lg:pt-[500px] lg:pb-24 relative"
       style={{
         background: "rgba(0, 0, 0, 0.6)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="relative min-h-[800px]">
+        {/* Mobile Layout (flexbox) */}
+        <div className="lg:hidden flex flex-col items-center">
+          {/* Title */}
+          <motion.h3
+            className="text-3xl md:text-4xl text-[#D4AF37] mb-8 text-center"
+            style={{ fontFamily: "'Caveat'" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Signature Dishes
+          </motion.h3>
 
+          {/* Image */}
+          <motion.div
+            className="w-full max-w-sm mb-8 rounded-2xl overflow-hidden border-2 border-[#D4AF37]/30"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <img
+              src="/food-menu.webp"
+              alt="Signature dishes"
+              className="w-full h-auto object-cover"
+            />
+          </motion.div>
+
+          {/* Menu Items */}
+          <div className="space-y-6 w-full max-w-md">
+            {foodItems.map((food, idx) => (
+              <motion.div
+                key={idx}
+                className="group text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <h4
+                  className="text-xl text-white group-hover:text-[#D4AF37] transition-colors tracking-wide mb-1"
+                  style={{ fontFamily: "'Koblenz'" }}
+                >
+                  {food.name}
+                </h4>
+                <div className="w-24 mx-auto border-b border-[#A1A1AA]/60 mb-2" />
+                <p
+                  className="text-[#A1A1AA] text-sm leading-relaxed"
+                  style={{ fontFamily: "'Cause'" }}
+                >
+                  {food.ingredients}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Layout (absolute positioning) */}
+        <div className="hidden lg:block relative min-h-[800px]">
           {/* Title - Absolute positioned */}
           <motion.h3
             className="absolute text-3xl md:text-4xl lg:text-5xl text-[#D4AF37]"
@@ -598,7 +713,7 @@ function FoodMenuSection() {
             Our Signature Dishes
           </motion.h3>
 
-          {/* Menu Item 1 - Laap Ped - Absolute positioned */}
+          {/* Menu Item 1 */}
           <motion.div
             className="absolute group"
             style={{ left: '150px', top: '150px' }}
@@ -624,7 +739,7 @@ function FoodMenuSection() {
             </p>
           </motion.div>
 
-          {/* Menu Item 2 - Khao Piak Sen - Absolute positioned */}
+          {/* Menu Item 2 */}
           <motion.div
             className="absolute group"
             style={{ left: '150px', top: '280px' }}
@@ -650,7 +765,7 @@ function FoodMenuSection() {
             </p>
           </motion.div>
 
-          {/* Menu Item 3 - Or Lam - Absolute positioned */}
+          {/* Menu Item 3 */}
           <motion.div
             className="absolute group"
             style={{ left: '150px', top: '410px' }}
@@ -687,13 +802,12 @@ function FoodMenuSection() {
           >
             <div className="relative h-[200px] md:h-[300px] lg:h-[380px] w-full rounded-3xl overflow-hidden bg-black/30 border-2 border-[#D4AF37]/30">
               <img
-                src="/food-menu.jpg"
+                src="/food-menu.webp"
                 alt="Signature dishes"
                 className="w-full h-full object-cover"
               />
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
@@ -704,49 +818,49 @@ function FoodMenuSection() {
 const galleryItems = [
   {
     id: "1",
-    img: "/gallery-1.jpg",
+    img: "/gallery-1.webp",
     url: "#",
     height: 500
   },
   {
     id: "2",
-    img: "/gallery-2.jpg",
+    img: "/gallery-2.webp",
     url: "#",
     height: 550
   },
   {
     id: "3",
-    img: "/gallery-3.jpg",
+    img: "/gallery-3.webp",
     url: "#",
     height: 600
   },
   {
     id: "4",
-    img: "/gallery-4.jpg",
+    img: "/gallery-4.webp",
     url: "#",
     height: 520
   },
   {
     id: "5",
-    img: "/gallery-5.jpg",
+    img: "/gallery-5.webp",
     url: "#",
     height: 450
   },
   {
     id: "6",
-    img: "/gallery-6.jpg",
+    img: "/gallery-6.webp",
     url: "#",
     height: 580
   },
   {
     id: "7",
-    img: "/gallery-7.jpg",
+    img: "/gallery-7.webp",
     url: "#",
     height: 380
   },
   {
     id: "8",
-    img: "/gallery-8.jpg",
+    img: "/gallery-8.webp",
     url: "#",
     height: 400
   },
@@ -754,12 +868,12 @@ const galleryItems = [
 
 function GallerySection() {
   return (
-    <section id="gallery" className="relative min-h-[1000px] w-full bg-black/40">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative h-full">
+    <section id="gallery" className="py-16 md:py-24 lg:relative lg:min-h-[1000px] w-full bg-black/40">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
 
-        {/* Header - Absolute Positioned */}
+        {/* Title */}
         <motion.div
-          className="absolute text-center w-full"
+          className="text-center mb-8 lg:absolute lg:w-full lg:mb-0"
           style={{ top: '-100px', left: 0 }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -773,9 +887,31 @@ function GallerySection() {
           </h3>
         </motion.div>
 
-        {/* Masonry Gallery - Absolute Positioned */}
+        {/* Mobile: Horizontal Scroll Gallery */}
+        <div className="lg:hidden overflow-x-auto pb-4 -mx-4 px-4">
+          <div className="flex gap-4" style={{ width: 'max-content' }}>
+            {galleryItems.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                className="flex-shrink-0 w-[280px] h-[350px] rounded-xl overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+              >
+                <img
+                  src={item.img}
+                  alt={`Gallery ${item.id}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Masonry Gallery */}
         <div
-          className="absolute w-full"
+          className="hidden lg:block lg:absolute w-full"
           style={{ top: '50px', left: 0, height: '800px' }}
         >
           <Masonry
