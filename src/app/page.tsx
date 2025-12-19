@@ -3,8 +3,9 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Masonry from "@/components/Masonry";
+import Navbar from "@/components/Navbar";
+import ReservationModal from "@/components/ReservationModal";
 import {
-  Search,
   MapPin,
   Clock,
   Phone,
@@ -15,8 +16,6 @@ import {
   Music,
   GlassWater,
   Users,
-  Menu,
-  X,
 } from "lucide-react";
 
 // Animation Variants
@@ -35,134 +34,17 @@ const staggerContainer = {
 
 // TopBar removed
 
-// ========== NAVBAR ==========
-function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const links = ["HOME", "MENU", "GALLERY", "CONTACT US"];
-
-  return (
-    <>
-      <nav className="absolute top-0 left-0 right-0 z-40 bg-transparent">
-        <div
-          className="flex items-center justify-center"
-          style={{ marginTop: '30px' }}
-        >
-
-          {/* Center Links - Desktop */}
-          <div className="hidden lg:flex items-center gap-12">
-            {links.map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase().replace(" ", "-")}`}
-                className="text-sm tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors"
-                style={{ fontFamily: "var(--font-lato)" }}
-              >
-                {link}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center">
-            {/* Hamburger Menu - Mobile Only */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
-            >
-              {isMenuOpen ? (
-                <X
-                  size={18}
-                  className="text-[#D4AF37] group-hover:text-black transition-colors"
-                />
-              ) : (
-                <Menu
-                  size={18}
-                  className="text-[#D4AF37] group-hover:text-black transition-colors"
-                />
-              )}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {
-          isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-50 bg-black/95 lg:hidden"
-            >
-              <div className="flex flex-col items-center justify-center h-full">
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="absolute top-6 right-4 w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
-                >
-                  <X
-                    size={18}
-                    className="text-[#D4AF37] group-hover:text-black transition-colors"
-                  />
-                </button>
-
-                {/* Logo */}
-                <div className="text-center mb-12">
-                  <h2
-                    className="text-3xl text-[#D4AF37] tracking-[0.2em]"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    THE BAR
-                  </h2>
-                  <span
-                    className="text-[10px] tracking-[0.3em] text-white/60"
-                    style={{ fontFamily: "var(--font-lato)" }}
-                  >
-                    EST. NISEKO 2016
-                  </span>
-                </div>
-
-                {/* Menu Links */}
-                <nav className="flex flex-col items-center gap-8">
-                  {links.map((link, index) => (
-                    <motion.a
-                      key={link}
-                      href={`#${link.toLowerCase().replace(" ", "-")}`}
-                      onClick={() => setIsMenuOpen(false)}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="text-lg tracking-[0.3em] text-white hover:text-[#D4AF37] transition-colors"
-                      style={{ fontFamily: "var(--font-lato)" }}
-                    >
-                      {link}
-                    </motion.a>
-                  ))}
-                </nav>
-
-                {/* Open Hours */}
-                <div className="mt-12 text-center">
-                  <p className="text-[#A1A1AA] text-sm" style={{ fontFamily: "var(--font-lato)" }}>
-                    Open at 6 PM to 2:00 AM
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          )
-        }
-      </AnimatePresence >
-    </>
-  );
-}
-
 // ========== HERO SECTION ==========
 function HeroSection() {
   return (
     <section id="home" className="relative h-[85dvh] md:h-screen w-full overflow-hidden">
       {/* 1. Background Image */}
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        className="absolute inset-0 z-0"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 3, ease: "easeOut" }}
+      >
         {/* Mobile Background */}
         <img
           src="/bg-mobile.jpg"
@@ -178,7 +60,7 @@ function HeroSection() {
         {/* 2. Magic Filters: Dark Luxury Theme */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-      </div>
+      </motion.div>
 
       {/* 3. Content - Flexbox Centered */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center px-4">
@@ -203,7 +85,7 @@ function HeroSection() {
             className="text-5xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] drop-shadow-2xl"
             style={{ fontFamily: "var(--font-cinzel)", marginBottom: '10px' }}
           >
-            LITTLE LAO
+            LITTLE LAO <span className="text-xs opacity-20">v2</span>
           </motion.h1>
 
 
@@ -261,14 +143,14 @@ function AboutSection() {
             className="text-4xl md:text-5xl text-[#D4AF37] mb-6"
             style={{ fontFamily: "var(--font-great-vibes)" }}
           >
-            About Niseko Bar
+            About Little Lao
           </h3>
 
           <p
             className="text-[#A1A1AA] leading-relaxed mb-6"
             style={{ fontFamily: "var(--font-lato)" }}
           >
-            Nestled in the heart of Niseko, THE BAR has been a sanctuary for
+            Nestled in the heart of Niseko, LITTLE LAO has been a sanctuary for
             discerning spirits since 2016. Our intimate speakeasy atmosphere
             offers an escape from the ordinary, where every moment becomes
             memorable.
@@ -329,11 +211,11 @@ const events = [
     title: "Private Events",
     day: "By Reservation",
     time: "Flexible Hours",
-    description: "Host your exclusive gatherings at THE BAR.",
+    description: "Host your exclusive gatherings at LITTLE LAO.",
   },
 ];
 
-function EventsSection() {
+function EventsSection({ onReserveClick }: { onReserveClick?: () => void }) {
   return (
     <section id="events" className="bg-black/40 py-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -392,7 +274,10 @@ function EventsSection() {
         </div>
 
         <div className="text-center mt-12">
-          <button className="px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all">
+          <button
+            onClick={onReserveClick}
+            className="px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all"
+          >
             Reserve Now
           </button>
         </div>
@@ -464,10 +349,19 @@ function MenuSection() {
   return (
     <section
       id="menu"
-      className="relative bg-black/60"
-      style={{ paddingTop: '80px', paddingBottom: '40px' }}
+      className="relative bg-black/60 overflow-hidden"
+      style={{ paddingTop: '60px', paddingBottom: '80px' }}
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Background Title Blur/Image - Extended Long */}
+      <div className="absolute top-0 left-0 right-0 h-full min-h-[100vh] overflow-hidden z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 bg-cover bg-center grayscale opacity-20 blur-2xl scale-110"
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1920")' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           className="text-center px-4"
@@ -477,7 +371,7 @@ function MenuSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-2 md:gap-4">
+          <div className="flex items-center justify-center gap-2 md:gap-4 lg:translate-x-[104px]">
             <motion.div
               className="h-0.5 rounded-full w-8 md:w-20"
               style={{
@@ -643,6 +537,15 @@ function MenuSection() {
                         className="absolute left-0 right-0 flex flex-col items-center px-6"
                         style={{ top: '50px' }}
                       >
+                        <h1
+                          className="text-3xl md:text-4xl text-[#D4AF37] tracking-[0.3em] mb-4"
+                          style={{ fontFamily: "var(--font-cinzel)" }}
+                        >
+                          LITTLE LAO <span className="text-[10px] opacity-20">v2</span>
+                        </h1>
+                        <p className="text-xs tracking-[0.4em] text-white/40 uppercase mb-16" style={{ fontFamily: "var(--font-lato)" }}>
+                          THE MENU
+                        </p>
                         <h3
                           className="text-2xl text-[#D4AF37] mb-3 text-center"
                           style={{ fontFamily: "'Koblenz'" }}
@@ -716,10 +619,19 @@ function FoodMenuSection() {
   return (
     <section
       id="food-menu"
-      className="relative bg-black/50"
-      style={{ paddingTop: '40px', paddingBottom: '40px' }}
+      className="relative bg-black/50 overflow-hidden"
+      style={{ paddingTop: '60px', paddingBottom: '80px' }}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      {/* Background Title Blur/Image - Extended Long */}
+      <div className="absolute top-0 left-0 right-0 h-full min-h-[100vh] overflow-hidden z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 bg-cover bg-center grayscale opacity-20 blur-2xl scale-110"
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1920")' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           className="text-center"
@@ -729,7 +641,7 @@ function FoodMenuSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 lg:translate-x-[104px]">
             <motion.div
               className="h-0.5 rounded-full"
               style={{
@@ -806,9 +718,9 @@ function FoodMenuSection() {
 
         {/* Desktop Layout: 2-Column Split - Menu Left, Image Right */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-24 items-center">
-          {/* Left: Menu Items - Centered */}
+          {/* Left: Menu Items - Aligned to right side of left column */}
           <motion.div
-            className="flex flex-col items-center"
+            className="flex flex-col items-center lg:items-end lg:ml-auto lg:mr-10 lg:max-w-[480px] lg:translate-x-[104px]"
 
             initial="hidden"
             whileInView="visible"
@@ -820,7 +732,7 @@ function FoodMenuSection() {
                 key={idx}
                 className="group text-center w-full max-w-2xl"
                 variants={fadeUp}
-                style={{ marginBottom: '60px' }}
+                style={{ marginBottom: '20px' }}
               >
                 <h4
                   className="text-4xl text-white group-hover:text-[#D4AF37] transition-colors duration-300 mb-6"
@@ -943,7 +855,7 @@ function GallerySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-2 md:gap-4">
+          <div className="flex items-center justify-center gap-2 md:gap-4 lg:translate-x-[104px]">
             <motion.div
               className="h-0.5 rounded-full w-6 md:w-[60px]"
               style={{
@@ -1018,183 +930,80 @@ function GallerySection() {
 // ========== FOOTER ==========
 function Footer() {
   return (
-    <footer id="contact-us" className="bg-black/50 pt-12 md:pt-16 pb-6 md:pb-8">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* Logo */}
-        <div className="text-center mb-10 md:mb-16">
-          <h2
-            className="text-2xl md:text-3xl text-[#D4AF37] tracking-[0.2em]"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            THE BAR
-          </h2>
-          <p
-            className="text-[10px] md:text-xs tracking-[0.3em] text-[#D4AF37]/70 mt-1"
-            style={{ fontFamily: "var(--font-lato)" }}
-          >
-            EST. NISEKO 2016
-          </p>
+    <footer id="contact-us" className="bg-gradient-to-b from-black/40 to-black/80 flex flex-col" style={{ minHeight: '600px', paddingTop: '40px' }}>
+
+      <div className="w-full px-6 md:px-8" style={{ paddingBottom: '40px' }}>
+
+        {/* Divider Line - Moved Inside */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" style={{ marginTop: '100px', marginBottom: '0px' }} />
+
+        {/* Logo - Centered */}
+        <div className="text-center" style={{ marginBottom: '10px' }}>
+          <img
+            src="/logo%20final.png"
+            alt="Little Lao"
+            style={{ height: '320px', margin: '0 auto', marginTop: '-80px' }}
+          />
         </div>
 
-        {/* Grid - Responsive */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 mb-10 md:mb-16">
+        {/* Info - Centered */}
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 justify-center items-start md:items-start" style={{ marginTop: '-60px' }}>
+
           {/* Location */}
-          <div className="text-center">
-            <MapPin
-              size={32}
-              className="text-[#D4AF37] mx-auto mb-3 md:mb-4"
-              strokeWidth={1}
-            />
-            <p
-              className="text-white text-xs md:text-sm mb-1"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              123 Hirafu Street
-            </p>
-            <p
-              className="text-[#A1A1AA] text-xs md:text-sm"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              Niseko, Hokkaido, Japan
-            </p>
-          </div>
-
-          {/* Hours */}
-          <div className="text-center">
-            <Clock
-              size={32}
-              className="text-[#D4AF37] mx-auto mb-3 md:mb-4"
-              strokeWidth={1}
-            />
-            <p
-              className="text-[#A1A1AA] text-xs md:text-sm"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              Mon-Thurs: 6pm-1am
-            </p>
-            <p
-              className="text-[#A1A1AA] text-xs md:text-sm"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              Fri: 6pm-2am
-            </p>
-            <p
-              className="text-[#A1A1AA] text-xs md:text-sm"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              Sat: 3pm-2am
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div className="text-center">
-            <Phone
-              size={32}
-              className="text-[#D4AF37] mx-auto mb-3 md:mb-4"
-              strokeWidth={1}
-            />
-            <p
-              className="text-white text-xs md:text-sm mb-1"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              +81 136 22 1234
-            </p>
-            <p
-              className="text-[#A1A1AA] text-xs md:text-sm break-all"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              info@thebar-niseko.jp
-            </p>
-          </div>
-
-          {/* Social Icons */}
-          <div className="text-center">
-            <div className="flex justify-center gap-3">
-              <a
-                href="#"
-                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
-              >
-                <Facebook
-                  size={18}
-                  className="text-[#D4AF37] group-hover:text-black transition-colors"
-                />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
-              >
-                <Twitter
-                  size={18}
-                  className="text-[#D4AF37] group-hover:text-black transition-colors"
-                />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
-              >
-                <Instagram
-                  size={18}
-                  className="text-[#D4AF37] group-hover:text-black transition-colors"
-                />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 md:w-12 md:h-12 border border-[#D4AF37] rounded-full flex items-center justify-center hover:bg-[#D4AF37] group transition-colors"
-              >
-                <Youtube
-                  size={18}
-                  className="text-[#D4AF37] group-hover:text-black transition-colors"
-                />
-              </a>
+          <div className="flex items-start gap-4">
+            <MapPin size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+            <div>
+              <p className="text-white/80 text-lg md:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                Sisavangvong Road<br />
+                Luang Prabang, Laos
+              </p>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="text-center sm:col-span-2 lg:col-span-1">
-            <nav className="flex flex-wrap justify-center gap-4 lg:flex-col lg:gap-2">
-              {["Menu", "About", "Gallery", "Events", "Contact Us"].map(
-                (link) => (
-                  <a
-                    key={link}
-                    href={`#${link.toLowerCase().replace(" ", "-")}`}
-                    className="text-[#A1A1AA] text-xs md:text-sm hover:text-[#D4AF37] transition-colors"
-                    style={{ fontFamily: "var(--font-lato)" }}
-                  >
-                    {link}
-                  </a>
-                )
-              )}
-            </nav>
+          {/* Hours */}
+          <div className="flex items-start gap-4">
+            <Clock size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+            <div>
+              <p className="text-white/80 text-lg md:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                Mon - Thurs: 6pm - 1am<br />
+                Fri: 6pm - 2am<br />
+                Sat: 3pm - 2am
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-white/10 mb-4 md:mb-6" />
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
-          <p
-            className="text-[#A1A1AA] text-[10px] md:text-xs text-center"
-            style={{ fontFamily: "var(--font-lato)" }}
-          >
-            Copyright 2020. All Rights Reserved
-          </p>
-          <div className="flex gap-3 md:gap-4">
-            <a
-              href="#"
-              className="text-[#A1A1AA] text-[10px] md:text-xs hover:text-white transition-colors"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              Privacy Policy
-            </a>
-            <span className="text-[#A1A1AA] text-[10px] md:text-xs">|</span>
-            <a
-              href="#"
-              className="text-[#A1A1AA] text-[10px] md:text-xs hover:text-white transition-colors"
-              style={{ fontFamily: "var(--font-lato)" }}
-            >
-              Terms of Use
-            </a>
+          {/* Contact + Social */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-start gap-4">
+              <Phone size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+              <div>
+                <p className="text-white/80 text-lg md:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                  +856 71 254 678<br />
+                  info@littlelao.la
+                </p>
+                {/* Social Icons */}
+                <div className="flex gap-3" style={{ marginTop: '15px' }}>
+                  <a
+                    href="#"
+                    className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300"
+                  >
+                    <Facebook size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                  </a>
+                  <a
+                    href="#"
+                    className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300"
+                  >
+                    <Instagram size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                  </a>
+                  <a
+                    href="#"
+                    className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300"
+                  >
+                    <Twitter size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1204,14 +1013,23 @@ function Footer() {
 
 // ========== MAIN PAGE ==========
 export default function Home() {
+  const [isReservationOpen, setIsReservationOpen] = useState(false);
+
+  const openReservation = () => setIsReservationOpen(true);
+
   return (
     <main>
-      <Navbar />
+      <Navbar onReserveClick={openReservation} />
       <HeroSection />
+      <AboutSection />
       <MenuSection />
       <FoodMenuSection />
       <GallerySection />
-      {/* <Footer /> */}
+      <Footer />
+      <ReservationModal
+        isOpen={isReservationOpen}
+        onClose={() => setIsReservationOpen(false)}
+      />
     </main>
   );
 }

@@ -33,9 +33,9 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "THE BAR | Est. Niseko 2016 - Premium Cocktails & Japanese Whisky",
+  title: "LITTLE LAO | Est. Niseko 2016 - Premium Cocktails & Japanese Whisky",
   description:
-    "Experience the finest Japanese whisky and premium cocktails at THE BAR in Niseko. Established in 2016, we offer an intimate speakeasy atmosphere.",
+    "Experience the finest Japanese whisky and premium cocktails at LITTLE LAO in Niseko. Established in 2016, we offer an intimate speakeasy atmosphere.",
   keywords: "Niseko bar, Japanese whisky, premium cocktails, speakeasy, luxury bar",
 };
 
