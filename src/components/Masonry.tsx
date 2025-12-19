@@ -2,6 +2,7 @@
 
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import NextImage from 'next/image';
 
 const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
     const get = () => {
@@ -63,6 +64,7 @@ interface Item {
     img: string;
     url: string;
     height: number;
+    alt?: string;
 }
 
 interface GridItem extends Item {
@@ -239,13 +241,18 @@ const Masonry: React.FC<MasonryProps> = ({
     };
 
     return (
-        <div ref={containerRef} className="relative w-full h-full mt-[200px]">
+        <div ref={containerRef} className="relative w-full h-full mt-[40px]">
             {grid.map(item => (
                 <div
                     key={item.id}
                     data-key={item.id}
                     className="absolute box-content cursor-pointer"
-                    style={{ willChange: 'transform, width, height, opacity' }}
+                    style={{
+                        willChange: 'transform, width, height, opacity',
+                        width: `${item.w}px`,
+                        height: `${item.h}px`,
+                        opacity: 0,
+                    }}
                     onClick={() => window.open(item.url, '_blank', 'noopener')}
                     onMouseEnter={e => handleMouseEnter(item.id, e.currentTarget)}
                     onMouseLeave={e => handleMouseLeave(item.id, e.currentTarget)}
@@ -258,11 +265,13 @@ const Masonry: React.FC<MasonryProps> = ({
                             boxShadow: '0 10px 40px -10px rgba(212, 175, 55, 0.4)',
                         }}
                     >
-                        <div className="w-full h-full rounded-lg overflow-hidden bg-black">
-                            <img
+                        <div className="w-full h-full rounded-lg overflow-hidden bg-black relative">
+                            <NextImage
                                 src={item.img}
-                                alt=""
-                                className="w-full h-full object-cover"
+                                alt={item.alt || ""}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 400px) 33vw, (max-width: 600px) 25vw, (max-width: 1000px) 16vw, 12vw"
                             />
                         </div>
                         {colorShiftOnHover && (
@@ -270,8 +279,9 @@ const Masonry: React.FC<MasonryProps> = ({
                         )}
                     </div>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     );
 };
 

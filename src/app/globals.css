@@ -32,7 +32,10 @@
   --foreground: #FFFFFF;
   --gray: #A1A1AA;
   --gold: #D4AF37;
+  --primary: #D4AF37;
+  --primary-glow: #FFD700;
 }
+
 
 * {
   margin: 0;
@@ -106,4 +109,82 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* ======================================================================
+   GLOBAL LAYOUT POLICY (GLP)
+   
+   This system enables independent element positioning using transforms
+   instead of margin/padding, ensuring zero-interference between elements.
+   
+   Usage: Add 'glp-movable' class and set CSS variables via inline style:
+   <div className="glp-movable" style={{ '--x-offset': '50px', '--y-offset': '20px' }}>
+   
+   For absolute freedom, combine with glp-absolute or glp-fixed:
+   <div className="glp-relative">
+     <span className="glp-absolute glp-movable" style={{ '--x-offset': '100px' }}>
+   ====================================================================== */
+
+/* GLP Positioning Variables - Default values */
+.glp-movable {
+  --x-offset: 0px;
+  --y-offset: 0px;
+  --z-layer: auto;
+  transform: translate(var(--x-offset), var(--y-offset)) !important;
+  z-index: var(--z-layer);
+  will-change: transform;
+}
+
+/* Absolute Freedom - Position Utilities */
+.glp-absolute {
+  position: absolute;
+}
+
+.glp-fixed {
+  position: fixed;
+}
+
+.glp-relative {
+  position: relative;
+}
+
+/* Zero-Interference Utilities */
+.glp-top {
+  z-index: 999 !important;
+}
+
+.glp-top-max {
+  z-index: 9999 !important;
+}
+
+.glp-overflow-visible {
+  overflow: visible !important;
+}
+
+.glp-overflow-visible * {
+  overflow: visible !important;
+}
+
+/* GLP No-Interference - Prevents layout shift when moving */
+.glp-no-shift {
+  position: relative;
+  display: inline-block;
+}
+
+.glp-no-shift>.glp-movable {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* GLP Rotate + Scale Extensions */
+.glp-transform {
+  --x-offset: 0px;
+  --y-offset: 0px;
+  --rotation: 0deg;
+  --scale: 1;
+  --z-layer: auto;
+  transform: translate(var(--x-offset), var(--y-offset)) rotate(var(--rotation)) scale(var(--scale));
+  z-index: var(--z-layer);
+  will-change: transform;
 }

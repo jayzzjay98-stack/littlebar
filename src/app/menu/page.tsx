@@ -8,24 +8,33 @@ import Link from "next/link";
 // ========== DATA MOCKUPS ==========
 
 const foodItems = [
-    { id: 1, name: "A5 WAGYU STRIPLOIN", description: "Miyazaki Prefecture, Garlic Chips, Sea Salt", isSignature: true, img: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" },
-    { id: 2, name: "CRISPY PORK BELLY", description: "Honey Glaze, Five Spice, Pickled Radish", isSignature: false, img: "https://images.unsplash.com/photo-1606471659766-07a587ae8f16?q=80&w=800&auto=format&fit=crop" },
-    { id: 3, name: "TRUFFLE RIGATONI", description: "Wild Mushrooms, Pecorino, Fresh Shaved Truffle", isSignature: true, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=800&auto=format&fit=crop" },
-    { id: 4, name: "MISO GLAZED SEA BASS", description: "Ginger-Soy, Bok Choy, Sesame Crisps", isSignature: false, img: "https://images.unsplash.com/photo-1534080333754-010d2922754d?q=80&w=800&auto=format&fit=crop" },
-    { id: 5, name: "GRILLED TIGER PRAWNS", description: "Chili Butter, Lemongrass, Fine Herbs", isSignature: true, img: "https://images.unsplash.com/photo-1565615822362-e737c050f52d?q=80&w=800&auto=format&fit=crop" },
-    { id: 6, name: "FOIE GRAS BRULEE", description: "Fig Jam, Brioche, Balsamic Reduction", isSignature: false, img: "https://images.unsplash.com/photo-1559181567-c3190cb9959b?q=80&w=800&auto=format&fit=crop" },
-    { id: 7, name: "HOKKAIDO SCALLOPS", description: "Uni Cream, Ikura, Shiso Oil", isSignature: true, img: "https://images.unsplash.com/photo-1599321412037-97554902c31c?q=80&w=800&auto=format&fit=crop" },
-    { id: 8, name: "DUCK CONFIT", description: "Orange Glaze, Parsnip Puree, Crispy Skin", isSignature: false, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&auto=format&fit=crop" },
-    { id: 9, name: "LOBSTER THERMIDOR", description: "Cognac Cream, Gruyère, Tarragon", isSignature: true, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=800&auto=format&fit=crop" },
+    { id: 1, name: "LAAP PED", description: "Minced Duck / Toasted Rice / Fresh Herbs / Fish Sauce / Lime", isSignature: true, img: "/laap-ped.png" },
+    { id: 2, name: "KHAO PIAK SEN", description: "Rice Noodles / Chicken Broth / Poached Chicken / Crispy Garlic", isSignature: false, img: "/khao-piak-sen.png" },
+    { id: 3, name: "OR LAM", description: "Buffalo Meat / Lao Eggplant / Sakaan Wood / Chili Paste / Dill", isSignature: true, img: "/or-lam.png" },
+    { id: 4, name: "CRISPY PORK BELLY", description: "Honey Glaze / Five Spice / Pickled Radish", isSignature: false, img: "/crispy-pork-belly.png" },
+    { id: 5, name: "MISO GLAZED SEA BASS", description: "Ginger-Soy / Bok Choy / Sesame Crisps", isSignature: false, img: "/miso-sea-bass.png" },
+    { id: 6, name: "A5 WAGYU STRIPLOIN", description: "Miyazaki Prefecture / Garlic Chips / Sea Salt", isSignature: true, img: "/a5-wagyu.png" },
+    { id: 7, name: "HOKKAIDO SCALLOPS", description: "Uni Cream / Ikura / Shiso Oil", isSignature: true, img: "/hokkaido-scallops.png" },
+    { id: 8, name: "DUCK CONFIT", description: "Orange Glaze / Parsnip Puree / Crispy Skin", isSignature: false, img: "/duck-confit.png" },
+    { id: 9, name: "TAM MAK HOONG", description: "Green Papaya / Lime / Chili / Fermented Fish Sauce", isSignature: true, img: "/food-menu.webp" },
+    { id: 10, name: "SAI OUA", description: "Lao Herbal Sausage / Lemongrass / Dill / Kaffir Lime", isSignature: false, img: "/food-menu.webp" },
+    { id: 11, name: "KHAO NIEW", description: "Premium Steamed Sticky Rice / Bamboo Basket", isSignature: false, img: "/food-menu.webp" },
+    { id: 12, name: "LITTLE LAO PLATTER", description: "Artisan selection of heritage Lao delicacies", isSignature: true, img: "/food-menu.webp" },
 ];
 
 const drinkItems = [
-    { id: 1, name: "SMOKED OLD FASHIONED", description: "Bourbon, Maple, Cedar Smoke", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&auto=format&fit=crop" },
-    { id: 2, name: "HIBIKI 17 YEARS", description: "Blended Japanese Whisky, Floral & Sweet", img: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=800&auto=format&fit=crop" },
-    { id: 3, name: "SIGNATURE GIN TONIC", description: "Botanical Gin, Yuzu, Premium Tonic", img: "https://images.unsplash.com/photo-1551075501-40960cfbe58e?q=80&w=800&auto=format&fit=crop" },
-    { id: 4, name: "YAMAZAKI SINGLE MALT", description: "Mizunara Cask, Fruity & Spicy", img: "https://images.unsplash.com/photo-1527281400828-ac737a999b9a?q=80&w=800&auto=format&fit=crop" },
-    { id: 5, name: "NEGRONI ROYALE", description: "Special Blend Vermouth, Gold Flakes", img: "https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=800&auto=format&fit=crop" },
-    { id: 6, name: "ESPRESSO MARTINI", description: "Fresh Brewed Arabica, Vanilla Bean", img: "https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=800&auto=format&fit=crop" },
+    { id: 1, name: "SMOKED OLD FASHIONED", description: "Bourbon / Maple / Cedar Smoke", img: "/cocktail-1.png" },
+    { id: 2, name: "HIBIKI 17 YEARS", description: "Blended Japanese Whisky / Floral & Sweet", img: "/cocktail-2.png" },
+    { id: 3, name: "SIGNATURE GIN TONIC", description: "Botanical Gin / Yuzu / Premium Tonic", img: "/cocktail-3.png" },
+    { id: 4, name: "YAMAZAKI SINGLE MALT", description: "Mizunara Cask / Fruity & Spicy", img: "/cocktail-4.png" },
+    { id: 5, name: "NEGRONI ROYALE", description: "Special Blend Vermouth / Gold Flakes", img: "/cocktail-5.png" },
+    { id: 6, name: "ESPRESSO MARTINI", description: "Fresh Brewed Arabica / Vanilla Bean", img: "/cocktail-6.png" },
+    { id: 7, name: "MEKONG SUNSET", description: "Lao Rum / Passion Fruit / Hibiscus", img: "/cocktail-1.png" },
+    { id: 8, name: "LAO MOJITO", description: "Lao Sticky Rice Spirit / Mint / Lime / Pandan", img: "/cocktail-2.png" },
+    { id: 9, name: "LOTUS BLOSSOM", description: "Jinzu Gin / Lychee / Rose / Sparkling Wine", img: "/cocktail-3.png" },
+    { id: 10, name: "GINGER LILY", description: "Vodka / Fresh Ginger / Honey / Lemon", img: "/cocktail-4.png" },
+    { id: 11, name: "SPICY MANGO", description: "Tequila / Mango / Bird's Eye Chili / Agave", img: "/cocktail-5.png" },
+    { id: 12, name: "COCONUT DREAM", description: "Dark Rum / Coconut Cream / Pineapple / Nutmeg", img: "/cocktail-6.png" },
 ];
 
 // ========== ICONS & TEXTURES ==========
@@ -52,30 +61,54 @@ const FiligreeDivider = () => (
     </div>
 );
 
-// ========== SUB-COMPONENTS ==========
+const LaoCornerMotif = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" className={`w-6 h-6 text-[#D4AF37] ${className}`}>
+        <path d="M4 4 L12 4 M4 4 L4 12 M4 4 L8 8" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+        <circle cx="4" cy="4" r="0.5" fill="currentColor" />
+        <circle cx="12" cy="4" r="0.5" fill="currentColor" />
+        <circle cx="4" cy="12" r="0.5" fill="currentColor" />
+        <path d="M8 4 L4 8" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
+    </svg>
+);
 
 const RestaurantMenuCard = ({ item, index }: { item: any; index: number }) => {
     return (
         <motion.div
-            className="group relative"
+            className="group relative flex flex-col items-center w-[45%] md:w-[30%] lg:w-[22%] xl:w-[18%] min-w-[140px] px-2"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.08, ease: [0.215, 0.61, 0.355, 1] }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.05 }}
         >
-            <div className="relative aspect-square mb-4 rounded-xl overflow-hidden border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/50 transition-all duration-500">
-                <motion.img
-                    src={item.img}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            {/* Image Container with Lao Frame */}
+            <div className="relative aspect-square w-full mb-6 transition-all duration-500">
+                {/* Gold Frame */}
+                <div className="absolute inset-0 border border-[#D4AF37]/30 group-hover:border-[#D4AF37] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-500 rounded-sm" />
+
+                {/* Corner Motifs */}
+                <LaoCornerMotif className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4" />
+                <LaoCornerMotif className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 rotate-90" />
+                <LaoCornerMotif className="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/4 -rotate-90" />
+                <LaoCornerMotif className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 rotate-180" />
+
+                <div className="relative w-full h-full overflow-hidden rounded-sm">
+                    <motion.img
+                        src={item.img}
+                        alt={item.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+                </div>
             </div>
 
-            <div className="px-1">
-                <h3 className="text-sm md:text-base tracking-[0.15em] text-[#D4AF37] mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
+            {/* Content */}
+            <div className="text-center w-full">
+                <h3 className="text-sm md:text-base tracking-[0.2em] text-[#D4AF37] mb-2 font-medium"
+                    style={{ fontFamily: "var(--font-cinzel)" }}>
                     {item.name}
                 </h3>
-                <p className="text-[10px] md:text-xs text-white/40 tracking-wider" style={{ fontFamily: "var(--font-lato)" }}>
+                <p className="text-[10px] md:text-xs text-white/50 tracking-wider font-light leading-relaxed max-w-[200px] mx-auto"
+                    style={{ fontFamily: "var(--font-lato)" }}>
                     {item.description}
                 </p>
             </div>
@@ -83,58 +116,51 @@ const RestaurantMenuCard = ({ item, index }: { item: any; index: number }) => {
     );
 };
 
-const SpiritsCard = ({ item, index }: { item: any; index: number }) => {
-    return (
-        <motion.div
-            className="group relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.08, ease: [0.215, 0.61, 0.355, 1] }}
-        >
-            <div className="relative aspect-square mb-4 rounded-xl overflow-hidden border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/50 transition-all duration-500">
-                <motion.img
-                    src={item.img}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
+const RowDivider = () => (
+    <div className="w-full h-px my-16 bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+);
 
-            <div className="px-1">
-                <h3 className="text-sm md:text-base tracking-[0.15em] text-[#D4AF37] mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
-                    {item.name}
-                </h3>
-                <p className="text-[10px] md:text-xs text-white/40 tracking-wider" style={{ fontFamily: "var(--font-lato)" }}>
-                    {item.description}
-                </p>
-            </div>
-        </motion.div>
-    );
-};
-
-// ========== MAIN PAGE ==========
+const LaiLaoPattern = () => (
+    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ zIndex: -1 }}>
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="lailao" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="none" stroke="#D4AF37" strokeWidth="0.5" />
+                    <circle cx="50" cy="50" r="2" fill="#D4AF37" />
+                    <path d="M25 25 L75 75 M75 25 L25 75" stroke="#D4AF37" strokeWidth="0.2" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#lailao)" />
+        </svg>
+    </div>
+);
 
 export default function MenuPage() {
     const [view, setView] = useState<"selection" | "food" | "drinks">("selection");
-    const [activeImg, setActiveImg] = useState<string | null>(null);
-
-    // Cursor tracking for list view
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    // Smooth springs for the preview image
-    const springConfig = { stiffness: 150, damping: 20, mass: 0.1 };
-    const springX = useSpring(mouseX, springConfig);
-    const springY = useSpring(mouseY, springConfig);
+    const [cols, setCols] = useState(3);
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            mouseX.set(e.clientX);
-            mouseY.set(e.clientY);
+        const handleResize = () => {
+            if (window.innerWidth >= 1280) setCols(5);
+            else if (window.innerWidth >= 1024) setCols(4);
+            else if (window.innerWidth >= 768) setCols(3);
+            else setCols(2);
         };
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseX, mouseY]);
+        window.addEventListener("resize", handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    // Helper to chunk items for divider insertion
+    const chunkItems = (items: any[], size: number) => {
+        const chunks = [];
+        for (let i = 0; i < items.length; i += size) {
+            chunks.push(items.slice(i, i + size));
+        }
+        return chunks;
+    };
 
     const shutterVariants: Variants = {
         initial: { clipPath: "inset(0 100% 0 0)", opacity: 0 },
@@ -151,36 +177,31 @@ export default function MenuPage() {
     };
 
     return (
-        <main className={`min-h-screen transition-colors duration-1000 relative overflow-x-hidden selection:bg-[#D4AF37]/30 ${activeImg ? 'bg-[#0a0f0a]' : 'bg-black'}`}>
-            {/* Handmade Paper Texture Overlay */}
-            <div className="fixed inset-0 pointer-events-none z-[1] opacity-[0.03] mix-blend-overlay"
-                style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/black-paper.png")' }} />
+        <main className="min-h-screen transition-colors duration-1000 relative overflow-x-hidden selection:bg-[#D4AF37]/30 bg-black">
 
             {/* TOP NAVIGATION OVERLAY */}
-            <nav className="fixed top-0 left-0 right-0 w-full z-50 px-8 md:px-12 py-8 flex justify-between items-center pointer-events-none">
-                <div className="pointer-events-auto">
-                    <Link href="/" className="flex items-center gap-2 text-white/40 hover:text-[#D4AF37] transition-all group">
-                        <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-                        <span className="text-[10px] tracking-[0.4em] uppercase font-medium">HOME</span>
-                    </Link>
-                </div>
+            <nav className="fixed top-20 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 flex items-center justify-between max-w-[1400px] mx-auto pointer-events-none">
+                <button
+                    onClick={() => view === "selection" ? window.location.href = "/" : setView("selection")}
+                    className="glp-movable flex items-center justify-center gap-3 px-6 py-3 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm text-xs md:text-sm tracking-[0.3em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-black/60 hover:text-[#FFD700] transition-all duration-300 group min-w-[120px] md:min-w-[140px] pointer-events-auto"
+                    style={{ '--x-offset': '20px' } as React.CSSProperties}
+                >
+                    <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform flex-shrink-0" />
+                    <span className="uppercase font-medium">{view === "selection" ? "HOME" : "BACK"}</span>
+                </button>
 
-                {view !== "selection" && (
-                    <div className="flex items-center gap-6 md:gap-12 pointer-events-auto">
-                        <button onClick={() => setView("selection")} className="text-[10px] tracking-[0.4em] text-white/40 hover:text-[#D4AF37] uppercase transition-all">
-                            THE SELECTION
-                        </button>
-                        <button
-                            onClick={() => setView(view === "food" ? "drinks" : "food")}
-                            className="flex items-center gap-2 px-4 md:px-6 py-2 border border-[#D4AF37]/20 rounded-full hover:border-[#D4AF37] transition-all bg-black/40 backdrop-blur-md group"
-                        >
-                            <ArrowRightLeft size={12} className="text-[#D4AF37]" />
-                            <span className="text-[10px] tracking-[0.3em] font-bold uppercase">
-                                {view === "food" ? "SPIRITS" : "CUISINE"}
-                            </span>
-                        </button>
-                    </div>
-                )}
+                {view !== "selection" ? (
+                    <button
+                        onClick={() => setView(view === "food" ? "drinks" : "food")}
+                        className="glp-movable flex items-center justify-center gap-3 px-6 py-3 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm hover:border-[#D4AF37] hover:bg-black/60 transition-all duration-300 group min-w-[140px] md:min-w-[160px] pointer-events-auto"
+                        style={{ '--x-offset': '40px' } as React.CSSProperties}
+                    >
+                        <ArrowRightLeft size={14} className="text-[#D4AF37] group-hover:text-[#FFD700] transition-colors flex-shrink-0" />
+                        <span className="text-xs md:text-sm tracking-[0.3em] font-medium uppercase text-[#D4AF37] group-hover:text-[#FFD700] transition-colors">
+                            {view === "food" ? "SPIRITS" : "CUISINE"}
+                        </span>
+                    </button>
+                ) : <div className="w-[160px] pointer-events-none" />}
             </nav>
 
             <AnimatePresence mode="wait">
@@ -204,7 +225,7 @@ export default function MenuPage() {
                         <div className="absolute inset-0 bg-black/70" />
 
                         {/* Content */}
-                        <div className="relative z-10 h-full flex flex-col items-center justify-center">
+                        <div className="relative z-10 h-full flex flex-col items-center justify-center pt-16">
                             {/* Logo */}
                             <h1
                                 className="text-3xl md:text-4xl text-[#D4AF37] tracking-[0.3em] mb-4"
@@ -225,11 +246,11 @@ export default function MenuPage() {
                                     whileTap={{ scale: 0.95 }}
                                     className="group flex flex-col items-center gap-4"
                                 >
-                                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-[#D4AF37]/50 flex items-center justify-center bg-black/40 backdrop-blur-md group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-all duration-500">
-                                        <span className="text-3xl md:text-4xl">🍽️</span>
+                                    <div className="w-28 h-28 md:w-40 md:h-40 rounded-full border border-[#D4AF37]/50 flex items-center justify-center bg-black/40 backdrop-blur-md group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-all duration-500">
+                                        <span className="text-3xl md:text-5xl">🍽️</span>
                                     </div>
                                     <span
-                                        className="text-sm md:text-base tracking-[0.3em] text-[#D4AF37]/70 group-hover:text-[#D4AF37] transition-colors"
+                                        className="text-sm md:text-lg tracking-[0.3em] text-[#D4AF37]/70 group-hover:text-[#D4AF37] transition-colors"
                                         style={{ fontFamily: "var(--font-cinzel)" }}
                                     >
                                         CUISINE
@@ -243,11 +264,11 @@ export default function MenuPage() {
                                     whileTap={{ scale: 0.95 }}
                                     className="group flex flex-col items-center gap-4"
                                 >
-                                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-[#D4AF37]/50 flex items-center justify-center bg-black/40 backdrop-blur-md group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-all duration-500">
-                                        <span className="text-3xl md:text-4xl">🍸</span>
+                                    <div className="w-28 h-28 md:w-40 md:h-40 rounded-full border border-[#D4AF37]/50 flex items-center justify-center bg-black/40 backdrop-blur-md group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-all duration-500">
+                                        <span className="text-3xl md:text-5xl">🍸</span>
                                     </div>
                                     <span
-                                        className="text-sm md:text-base tracking-[0.3em] text-[#D4AF37]/70 group-hover:text-[#D4AF37] transition-colors"
+                                        className="text-sm md:text-lg tracking-[0.3em] text-[#D4AF37]/70 group-hover:text-[#D4AF37] transition-colors"
                                         style={{ fontFamily: "var(--font-cinzel)" }}
                                     >
                                         SPIRITS
@@ -260,17 +281,18 @@ export default function MenuPage() {
 
                 {view === "food" && (
                     <div className="relative w-full min-h-screen">
-                        {/* Full Width Background Title Blur/Image */}
-                        {/* Background Blur - EXTENDED TO 100VH */}
+                        <LaiLaoPattern />
+
+                        {/* Background Blur */}
                         <div className="fixed top-0 left-0 right-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
                             <motion.div
                                 initial={{ scale: 1.1, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 0.5 }}
+                                animate={{ scale: 1, opacity: 0.2 }}
                                 transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-2xl"
+                                className="absolute inset-0 bg-cover bg-center grayscale blur-3xl"
                                 style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920")' }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black" />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
                         </div>
 
                         <motion.div
@@ -279,24 +301,29 @@ export default function MenuPage() {
                             initial="initial"
                             animate="enter"
                             exit="exit"
-                            className="w-full pb-40 px-6 relative z-10"
-                            style={{ paddingTop: '150px' }}
+                            className="w-full pb-60 px-6 relative z-10"
+                            style={{ paddingTop: '80px' }}
                         >
-                            <header className="text-center mb-40 relative">
-                                <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.25em] text-[#D4AF37] drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]"
-                                    style={{
-                                        fontFamily: "var(--font-cinzel)"
-                                    }}
+                            <header className="text-center mb-72 relative">
+                                <h1 className="text-4xl md:text-6xl font-light tracking-[0.3em] text-[#D4AF37] drop-shadow-[0_0_50px_rgba(212,175,55,0.3)]"
+                                    style={{ fontFamily: "var(--font-cinzel)" }}
                                 >
                                     CUISINE
                                 </h1>
-                                <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-16 scale-150" />
+                                <div className="h-[1px] w-full max-w-4xl bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-8 opacity-50" />
                             </header>
 
-                            <div className="max-w-7xl mx-auto">
-                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-                                    {foodItems.map((item, idx) => (
-                                        <RestaurantMenuCard key={item.id} item={item} index={idx} />
+                            <div className="max-w-7xl mx-auto lg:translate-x-[104px]">
+                                <div className="flex flex-col gap-y-16">
+                                    {[0, 1, 2].map((rowIndex) => (
+                                        <React.Fragment key={rowIndex}>
+                                            <RowDivider />
+                                            <div className="flex flex-wrap justify-center gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
+                                                {foodItems.slice(rowIndex * 4, (rowIndex + 1) * 4).map((item, idx) => (
+                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} />
+                                                ))}
+                                            </div>
+                                        </React.Fragment>
                                     ))}
                                 </div>
                             </div>
@@ -306,17 +333,18 @@ export default function MenuPage() {
 
                 {view === "drinks" && (
                     <div className="relative w-full min-h-screen">
-                        {/* Full Width Background Title Blur/Image */}
-                        {/* Background Blur - EXTENDED TO 100VH */}
+                        <LaiLaoPattern />
+
+                        {/* Background Blur */}
                         <div className="fixed top-0 left-0 right-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
                             <motion.div
                                 initial={{ scale: 1.1, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 0.5 }}
+                                animate={{ scale: 1, opacity: 0.2 }}
                                 transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-2xl"
+                                className="absolute inset-0 bg-cover bg-center grayscale blur-3xl"
                                 style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920")' }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black" />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
                         </div>
 
                         <motion.div
@@ -325,24 +353,29 @@ export default function MenuPage() {
                             initial="initial"
                             animate="enter"
                             exit="exit"
-                            className="w-full pb-40 px-6 relative z-10"
-                            style={{ paddingTop: '150px' }}
+                            className="w-full pb-60 px-6 relative z-10"
+                            style={{ paddingTop: '80px' }}
                         >
-                            <header className="text-center mb-40 relative">
-                                <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.25em] text-[#D4AF37] drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]"
-                                    style={{
-                                        fontFamily: "var(--font-cinzel)"
-                                    }}
+                            <header className="text-center mb-72 relative">
+                                <h1 className="text-4xl md:text-6xl font-light tracking-[0.3em] text-[#D4AF37] drop-shadow-[0_0_50px_rgba(212,175,55,0.3)]"
+                                    style={{ fontFamily: "var(--font-cinzel)" }}
                                 >
                                     SPIRITS
                                 </h1>
-                                <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-16 scale-150" />
+                                <div className="h-[1px] w-full max-w-4xl bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-8 opacity-50" />
                             </header>
 
-                            <div className="max-w-7xl mx-auto">
-                                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-                                    {drinkItems.map((item, idx) => (
-                                        <SpiritsCard key={item.id} item={item} index={idx} />
+                            <div className="max-w-7xl mx-auto lg:translate-x-[104px]">
+                                <div className="flex flex-col gap-y-16">
+                                    {[0, 1, 2].map((rowIndex) => (
+                                        <React.Fragment key={rowIndex}>
+                                            <RowDivider />
+                                            <div className="flex flex-wrap justify-center gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
+                                                {drinkItems.slice(rowIndex * 4, (rowIndex + 1) * 4).map((item, idx) => (
+                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} />
+                                                ))}
+                                            </div>
+                                        </React.Fragment>
                                     ))}
                                 </div>
                             </div>
@@ -350,9 +383,9 @@ export default function MenuPage() {
                     </div>
                 )}
             </AnimatePresence>
-
-            {/* Environmental Blur */}
-            <div className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 z-0 ${activeImg ? 'opacity-40 backdrop-blur-xl' : 'opacity-0'}`} />
         </main>
     );
 }
+
+// ========== REMOVED UNUSED COMPONENTS ==========
+// VerticalMenuItem has been replaced by the grid-based RestaurantMenuCard

@@ -57,14 +57,14 @@ export default function Navbar({ onReserveClick, variant = "home" }: NavbarProps
                             }
 
                             return (
-                                <a
+                                <Link
                                     key={link}
                                     href={href}
                                     className="text-sm tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors"
                                     style={{ fontFamily: "var(--font-lato)" }}
                                 >
                                     {link}
-                                </a>
+                                </Link>
                             );
                         })}
                     </div>

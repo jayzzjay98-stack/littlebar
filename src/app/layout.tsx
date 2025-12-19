@@ -39,17 +39,19 @@ export const metadata: Metadata = {
   keywords: "Niseko bar, Japanese whisky, premium cocktails, speakeasy, luxury bar",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${playfair.variable} ${greatVibes.variable} ${lato.variable} ${cinzel.variable} ${quicksand.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={`${playfair.variable} ${greatVibes.variable} ${lato.variable} ${cinzel.variable} ${quicksand.variable}`} suppressHydrationWarning>
+      <body className="antialiased">
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

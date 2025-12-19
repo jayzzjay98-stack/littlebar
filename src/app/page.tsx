@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Masonry from "@/components/Masonry";
 import Navbar from "@/components/Navbar";
@@ -46,17 +48,27 @@ function HeroSection() {
         transition={{ duration: 3, ease: "easeOut" }}
       >
         {/* Mobile Background */}
-        <img
-          src="/bg-mobile.jpg"
-          alt="Little Lao Mobile Background"
-          className="md:hidden w-full h-full object-cover"
-        />
+        <div className="md:hidden relative w-full h-full">
+          <Image
+            src="/bg-mobile.jpg"
+            alt="Intimate atmosphere and warm lighting at LITTLE LAO bar"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         {/* Desktop Background */}
-        <img
-          src="/bg-main.webp"
-          alt="Little Lao Shop Sign"
-          className="hidden md:block w-full h-full object-cover object-center"
-        />
+        <div className="hidden md:block relative w-full h-full">
+          <Image
+            src="/bg-main.webp"
+            alt="LITTLE LAO premium craftsmanship and speakeasy bar sign in Niseko"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </div>
         {/* 2. Magic Filters: Dark Luxury Theme */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
@@ -165,9 +177,12 @@ function AboutSection() {
             master bartenders.
           </p>
 
-          <button className="px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all">
+          <Link
+            href="/#menu"
+            className="inline-block px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all"
+          >
             Learn More
-          </button>
+          </Link>
         </div>
       </motion.div>
 
@@ -179,11 +194,12 @@ function AboutSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?q=80&w=2070&auto=format&fit=crop')`,
-          }}
+        <Image
+          src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?q=80&w=2070&auto=format&fit=crop"
+          alt="Curated collection of rare Japanese whiskies at LITTLE LAO"
+          fill
+          className="object-cover"
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </motion.div>
     </section>
@@ -418,11 +434,15 @@ function MenuSection() {
                       className="absolute inset-0 rounded-[32px] overflow-hidden"
                       style={{ backfaceVisibility: 'hidden' }}
                     >
-                      <img
-                        src={drink.image}
-                        alt={drink.name}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
+                      <div className="absolute inset-0">
+                        <Image
+                          src={drink.image}
+                          alt={`${drink.name} signature cocktail crafted at LITTLE LAO`}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          sizes="(max-width: 768px) 70vw, 280px"
+                        />
+                      </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
                         <h3
@@ -508,10 +528,12 @@ function MenuSection() {
                       className="absolute inset-0 rounded-2xl overflow-hidden"
                       style={{ backfaceVisibility: 'hidden' }}
                     >
-                      <img
+                      <Image
                         src={drink.image}
-                        alt={drink.name}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        alt={`${drink.name} signature cocktail at LITTLE LAO`}
+                        fill
+                        className="object-cover"
+                        sizes="320px"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-center">
@@ -593,6 +615,7 @@ function MenuSection() {
 const foodItems = [
   {
     name: "Laap Ped",
+    image: "/laap-ped.png",
     ingredients: (
       <>
         Minced Duck / Toasted Rice / Fresh Herbs / <br className="md:hidden" />
@@ -602,10 +625,12 @@ const foodItems = [
   },
   {
     name: "Khao Piak Sen",
+    image: "/khao-piak-sen.png",
     ingredients: "Rice Noodles / Chicken Broth / Poached Chicken / Crispy Garlic / Spring Onion",
   },
   {
     name: "Or Lam",
+    image: "/or-lam.png",
     ingredients: (
       <>
         Buffalo Meat / Lao Eggplant / Sakaan Wood / <br className="md:hidden" />
@@ -671,16 +696,18 @@ function FoodMenuSection() {
           <div className="flex justify-center">
             {/* Highlight Image with Badge */}
             <motion.div
-              className="relative rounded-[32px] overflow-hidden mb-10 w-[88%]"
+              className="relative rounded-[32px] overflow-hidden mb-10 w-[88%] h-[280px]"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <img
+              <Image
                 src="/food-menu.webp"
-                alt="Signature dish"
-                className="w-full h-[280px] object-cover"
+                alt="Signature Lao dish prepared with authentic ingredients at LITTLE LAO"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 88vw, 0px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </motion.div>
@@ -720,7 +747,7 @@ function FoodMenuSection() {
         <div className="hidden lg:grid lg:grid-cols-2 gap-24 items-center">
           {/* Left: Menu Items - Aligned to right side of left column */}
           <motion.div
-            className="flex flex-col items-center lg:items-end lg:ml-auto lg:mr-10 lg:max-w-[480px] lg:translate-x-[104px]"
+            className="flex flex-col items-center lg:max-w-[600px] mx-auto"
 
             initial="hidden"
             whileInView="visible"
@@ -759,11 +786,13 @@ function FoodMenuSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[550px]">
+              <Image
                 src="/food-menu.webp"
-                alt="Signature dish"
-                className="w-full h-[550px] object-cover"
+                alt="Authentic Lao culinary masterpiece at LITTLE LAO"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 0px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
@@ -788,54 +817,14 @@ function FoodMenuSection() {
 
 // ========== GALLERY SECTION ==========
 const galleryItems = [
-  {
-    id: "1",
-    img: "/gallery-1.webp",
-    url: "#",
-    height: 500
-  },
-  {
-    id: "2",
-    img: "/gallery-2.webp",
-    url: "#",
-    height: 550
-  },
-  {
-    id: "3",
-    img: "/gallery-3.webp",
-    url: "#",
-    height: 600
-  },
-  {
-    id: "4",
-    img: "/gallery-4.webp",
-    url: "#",
-    height: 520
-  },
-  {
-    id: "5",
-    img: "/gallery-5.webp",
-    url: "#",
-    height: 450
-  },
-  {
-    id: "6",
-    img: "/gallery-6.webp",
-    url: "#",
-    height: 580
-  },
-  {
-    id: "7",
-    img: "/gallery-7.webp",
-    url: "#",
-    height: 380
-  },
-  {
-    id: "8",
-    img: "/gallery-8.webp",
-    url: "#",
-    height: 400
-  },
+  { id: "1", img: "/gallery-1.webp", url: "#", height: 500 },
+  { id: "2", img: "/gallery-2.webp", url: "#", height: 550 },
+  { id: "3", img: "/gallery-3.webp", url: "#", height: 600 },
+  { id: "4", img: "/gallery-4.webp", url: "#", height: 520 },
+  { id: "5", img: "/gallery-5.webp", url: "#", height: 450 },
+  { id: "6", img: "/gallery-6.webp", url: "#", height: 580 },
+  { id: "7", img: "/gallery-7.webp", url: "#", height: 380 },
+  { id: "8", img: "/gallery-8.webp", url: "#", height: 400 },
 ];
 
 function GallerySection() {
@@ -900,7 +889,7 @@ function GallerySection() {
           </div>
         </div>
 
-        {/* Desktop: 4-Column Grid Gallery - Full Size Images */}
+        {/* Desktop: 4-Column Grid Gallery */}
         <div className="hidden lg:flex lg:justify-center">
           <div className="grid grid-cols-4 gap-3 auto-rows-auto" style={{ maxWidth: '900px', marginLeft: '200px' }}>
             {galleryItems.map((item, idx) => (
