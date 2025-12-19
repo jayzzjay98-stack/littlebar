@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, Variants } from "framer-motion";
 import { ArrowLeft, ArrowRightLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // ========== DATA MOCKUPS ==========
 
@@ -71,7 +72,18 @@ const LaoCornerMotif = ({ className }: { className?: string }) => (
     </svg>
 );
 
-const RestaurantMenuCard = ({ item, index }: { item: any; index: number }) => {
+interface MenuCardProps {
+    item: {
+        id: number;
+        name: string;
+        description: string;
+        isSignature?: boolean;
+        img: string;
+    };
+    index: number;
+}
+
+const RestaurantMenuCard = ({ item, index }: MenuCardProps) => {
     return (
         <div className="glp-no-shift">
             <motion.div
@@ -94,10 +106,13 @@ const RestaurantMenuCard = ({ item, index }: { item: any; index: number }) => {
                     <LaoCornerMotif className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 rotate-180" />
 
                     <div className="relative w-full h-full overflow-hidden rounded-sm">
-                        <motion.img
+                        <Image
                             src={item.img}
                             alt={item.name}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 30vw, 20vw"
+                            priority={index < 4}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
                     </div>
@@ -140,30 +155,8 @@ const LaiLaoPattern = () => (
 
 export default function MenuPage() {
     const [view, setView] = useState<"selection" | "food" | "drinks">("selection");
-    const [cols, setCols] = useState(3);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1280) setCols(5);
-            else if (window.innerWidth >= 1024) setCols(4);
-            else if (window.innerWidth >= 768) setCols(3);
-            else setCols(2);
-        };
-        window.addEventListener("resize", handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
 
-    // Helper to chunk items for divider insertion
-    const chunkItems = (items: any[], size: number) => {
-        const chunks = [];
-        for (let i = 0; i < items.length; i += size) {
-            chunks.push(items.slice(i, i + size));
-        }
-        return chunks;
-    };
 
     const shutterVariants: Variants = {
         initial: { clipPath: "inset(0 100% 0 0)", opacity: 0 },
@@ -221,7 +214,7 @@ export default function MenuPage() {
                         <div
                             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                             style={{
-                                backgroundImage: 'url("https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1920&q=80")',
+                                backgroundImage: 'url("/new.jpg")',
                             }}
                         />
                         {/* Dark Overlay */}
@@ -292,9 +285,26 @@ export default function MenuPage() {
                                 initial={{ scale: 1.1, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 0.2 }}
                                 transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-[100px]"
-                                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920")' }}
+                                className="absolute inset-0 bg-cover bg-center grayscale blur-[100px] hidden md:block"
+                                style={{ backgroundImage: 'url("/new.jpg")' }}
                             />
+                            {/* Mobile specific background */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 0.6 }}
+                                transition={{ duration: 1.5 }}
+                                className="absolute inset-0 md:hidden"
+                            >
+                                <Image
+                                    src="/Gemini_Generated_Image_foozcvfoozcvfooz.png"
+                                    alt="Menu Background"
+                                    fill
+                                    priority
+                                    unoptimized
+                                    className="object-cover object-center"
+                                    sizes="100vw"
+                                />
+                            </motion.div>
                             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
                         </div>
 

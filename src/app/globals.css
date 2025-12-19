@@ -47,6 +47,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 /* Smooth scrolling for all scrollable elements */
@@ -56,7 +58,7 @@ html {
 
 body {
   background: var(--background);
-  background-image: url('/background.webp');
+  background-image: url('/new.jpg?v=2');
   background-size: cover;
   background-position: top center;
   background-attachment: fixed;
@@ -64,6 +66,9 @@ body {
   color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
+  width: 100%;
+  position: relative;
 }
 
 /* Custom scrollbar */
@@ -96,7 +101,7 @@ body {
 /* Wood texture background */
 .wood-texture {
   background-color: #000;
-  background-image: url('/bg-main.jpg');
+  background-image: url('/new.jpg?v=2');
   background-size: cover;
   background-position: center;
 }

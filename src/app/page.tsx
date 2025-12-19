@@ -34,7 +34,7 @@ const staggerContainer = {
   },
 };
 
-// TopBar removed
+
 
 // ========== HERO SECTION ==========
 function HeroSection() {
@@ -44,7 +44,7 @@ function HeroSection() {
       {/* Mobile Background - no zoom */}
       <div className="md:hidden absolute inset-0 z-0">
         <Image
-          src="/bg-mobile.webp"
+          src="/bg-main.webp"
           alt="Intimate atmosphere and warm lighting at LITTLE LAO bar"
           fill
           priority
@@ -367,14 +367,14 @@ function MenuSection() {
         </motion.div>
 
         {/* Mobile: Horizontal Scroll Snap Gallery */}
-        <div className="lg:hidden overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide">
+        <div className="lg:hidden overflow-x-auto scroll-smooth pb-8 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
           <div className="flex gap-6 px-6" style={{ width: 'max-content' }}>
             {signatureDrinks.map((drink, idx) => {
               const isFlipped = selectedCard === idx;
               return (
                 <div
                   key={idx}
-                  className="snap-center w-[70vw] max-w-[280px] h-[400px] relative flex-shrink-0 group perspective-1000"
+                  className="w-[70vw] max-w-[280px] h-[400px] relative flex-shrink-0 group perspective-1000"
                   onClick={() => handleCardClick(idx)}
                 >
                   <motion.div
@@ -413,21 +413,25 @@ function MenuSection() {
 
                     {/* Back Side */}
                     <div
-                      className="absolute inset-0 rounded-[32px] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#D4AF37]/30 flex flex-col items-center justify-center p-6 text-center"
+                      className="absolute inset-0 rounded-[32px] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#D4AF37]/30 flex flex-col items-center justify-start px-6 text-center"
                       style={{
                         backfaceVisibility: 'hidden',
                         transform: 'rotateY(180deg)',
+                        paddingTop: '100px', // Adjusted from 180px
+                        paddingBottom: '24px'
                       }}
                     >
-                      <h3
-                        className="text-xl text-[#D4AF37] mb-4"
-                        style={{ fontFamily: "'Koblenz'" }}
-                      >
-                        {drink.name}
-                      </h3>
-                      <div
-                        className="h-0.5 w-16 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-6"
-                      />
+                      <div className="inline-block relative" style={{ marginBottom: '32px' }}>
+                        <h3
+                          className="text-xl text-[#D4AF37] mb-4"
+                          style={{ fontFamily: "'Koblenz'" }}
+                        >
+                          {drink.name}
+                        </h3>
+                        <div
+                          className="h-0.5 w-full rounded-full bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
+                        />
+                      </div>
                       <p
                         className="text-white/90 text-sm leading-loose"
                         style={{ fontFamily: "'Cause'" }}
@@ -511,50 +515,41 @@ function MenuSection() {
                         transform: 'rotateY(180deg)',
                       }}
                     >
-                      {/* Title - positioned at top */}
                       <div
-                        className="absolute left-0 right-0 flex flex-col items-center px-6"
-                        style={{ top: '50px' }}
+                        className="flex flex-col items-center justify-start h-full px-6"
+                        style={{ paddingTop: '100px', paddingBottom: '32px' }}
                       >
-                        <h1
-                          className="text-3xl md:text-4xl text-[#D4AF37] tracking-[0.3em] mb-4"
-                          style={{ fontFamily: "var(--font-cinzel)" }}
-                        >
-                          LITTLE LAO <span className="text-[10px] opacity-20">v2</span>
-                        </h1>
-                        <p className="text-xs tracking-[0.4em] text-white/40 uppercase mb-16" style={{ fontFamily: "var(--font-lato)" }}>
-                          THE MENU
-                        </p>
-                        <h3
-                          className="text-2xl text-[#D4AF37] mb-3 text-center"
-                          style={{ fontFamily: "'Koblenz'" }}
-                        >
-                          {drink.name}
-                        </h3>
-                        <div
-                          className="h-0.5 rounded-full"
-                          style={{
-                            width: '150px',
-                            background: 'linear-gradient(90deg, transparent, #D4AF37, #FFD700, #D4AF37, transparent)'
-                          }}
-                        />
-                      </div>
+                        {/* Title Section */}
+                        <div className="text-center" style={{ marginBottom: '40px' }}>
+                          <div className="inline-block relative">
+                            <h3
+                              className="text-2xl md:text-3xl text-[#D4AF37] mb-3 text-center"
+                              style={{ fontFamily: "'Koblenz'" }}
+                            >
+                              {drink.name}
+                            </h3>
+                            <div
+                              className="h-0.5 rounded-full w-full"
+                              style={{
+                                background: 'linear-gradient(90deg, transparent, #D4AF37, #FFD700, #D4AF37, transparent)'
+                              }}
+                            />
+                          </div>
+                        </div>
 
-                      {/* Ingredients - positioned in middle */}
-                      <div
-                        className="absolute left-0 right-0 text-center px-6"
-                        style={{ top: '140px' }}
-                      >
-                        <p
-                          className="text-white text-base leading-loose"
-                          style={{ fontFamily: "'Cause'" }}
-                        >
-                          {drink.ingredients.split(' / ').map((ingredient, i) => (
-                            <span key={i} className="block mb-2">
-                              {ingredient}
-                            </span>
-                          ))}
-                        </p>
+                        {/* Ingredients Section */}
+                        <div className="text-center">
+                          <p
+                            className="text-white/90 text-sm leading-relaxed"
+                            style={{ fontFamily: "'Cause'" }}
+                          >
+                            {drink.ingredients.split(' / ').map((ingredient, i) => (
+                              <span key={i} className="block mb-1.5">
+                                {ingredient}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -663,7 +658,7 @@ function FoodMenuSection() {
           </div>
 
           {/* Menu Items List */}
-          <div className="space-y-16 mx-6">
+          <div className="space-y-16 mx-6 pl-[20px]">
             {foodItems.map((food, idx) => (
               <motion.div
                 key={idx}
@@ -696,7 +691,7 @@ function FoodMenuSection() {
         <div className="hidden lg:grid lg:grid-cols-2 gap-24 items-center">
           {/* Left: Menu Items - Aligned to right side of left column */}
           <motion.div
-            className="flex flex-col items-center lg:max-w-[600px] mx-auto"
+            className="flex flex-col items-center lg:max-w-[600px] mx-auto lg:translate-x-[104px]"
 
             initial="hidden"
             whileInView="visible"
@@ -807,7 +802,7 @@ function GallerySection() {
 
         {/* Mobile: Horizontal Snap Gallery */}
         <div className="lg:hidden w-full overflow-hidden pb-8">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-4 scrollbar-hide">
+          <div className="flex gap-4 overflow-x-auto scroll-smooth px-6 pb-4 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
             {galleryItems.map((item, idx) => (
               <motion.div
                 key={item.id}
