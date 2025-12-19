@@ -33,6 +33,7 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://littlelao.la"),
   title: "LITTLE LAO | Original Taste of Luang Prabang - Premium Cocktails & Culture",
   description:
     "Experience the heart of Luang Prabang at LITTLE LAO. Authentic Lao cuisine, signature artisanal cocktails, and a vibrant cultural atmosphere. Established in 2016.",
@@ -112,7 +113,12 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${playfair.variable} ${greatVibes.variable} ${lato.variable} ${cinzel.variable} ${quicksand.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${greatVibes.variable} ${lato.variable} ${cinzel.variable} ${quicksand.variable}`}
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+    >
       <head>
         <script
           type="application/ld+json"

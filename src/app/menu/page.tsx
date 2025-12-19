@@ -81,9 +81,10 @@ interface MenuCardProps {
         img: string;
     };
     index: number;
+    isPriority?: boolean;
 }
 
-const RestaurantMenuCard = ({ item, index }: MenuCardProps) => {
+const RestaurantMenuCard = ({ item, index, isPriority = false }: MenuCardProps) => {
     return (
         <div className="glp-no-shift">
             <motion.div
@@ -112,7 +113,7 @@ const RestaurantMenuCard = ({ item, index }: MenuCardProps) => {
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                             sizes="(max-width: 768px) 45vw, (max-width: 1024px) 30vw, 20vw"
-                            priority={index < 4}
+                            priority={isPriority}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
                     </div>
@@ -174,6 +175,38 @@ export default function MenuPage() {
 
     return (
         <main className="glp-section min-h-screen transition-colors duration-1000 relative overflow-x-hidden selection:bg-[#D4AF37]/30 bg-black">
+            {/* PERSISTENT GLOBAL BACKGROUND */}
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+                {/* Desktop Background (Optimized JPG) */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.2 }}
+                    className="absolute inset-0 bg-cover bg-center grayscale blur-[100px] hidden md:block"
+                    style={{ backgroundImage: 'url("/new.jpg?v=3")' }}
+                />
+
+                {/* Mobile Background (High-Quality Lossless PNG) */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.8 }}
+                    className="absolute inset-0 md:hidden"
+                >
+                    <Image
+                        src="/Gemini_Generated_Image_foozcvfoozcvfooz.png?v=3"
+                        alt="Menu Background"
+                        fill
+                        priority
+                        unoptimized
+                        className="object-cover object-center"
+                        sizes="100vw"
+                    />
+                </motion.div>
+
+                {/* Dark Overlays matched across all views */}
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black" />
+            </div>
+
 
             {/* TOP NAVIGATION OVERLAY */}
             <nav className="glp-overflow-visible fixed top-8 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 flex items-center justify-between max-w-[1400px] mx-auto pointer-events-none">
@@ -211,15 +244,6 @@ export default function MenuPage() {
                         className="h-screen w-full relative z-10"
                     >
                         {/* Full Screen Background */}
-                        <div
-                            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                            style={{
-                                backgroundImage: 'url("/new.jpg")',
-                            }}
-                        />
-                        {/* Dark Overlay */}
-                        <div className="absolute inset-0 bg-black/70" />
-
                         {/* Content */}
                         <div className="relative z-10 h-full flex flex-col items-center justify-center">
                             {/* Logo */}
@@ -279,35 +303,6 @@ export default function MenuPage() {
                     <div className="relative w-full min-h-screen">
                         <LaiLaoPattern />
 
-                        {/* Background Blur */}
-                        <div className="fixed top-0 left-0 right-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
-                            <motion.div
-                                initial={{ scale: 1.1, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 0.2 }}
-                                transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-[100px] hidden md:block"
-                                style={{ backgroundImage: 'url("/new.jpg")' }}
-                            />
-                            {/* Mobile specific background */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 0.6 }}
-                                transition={{ duration: 1.5 }}
-                                className="absolute inset-0 md:hidden"
-                            >
-                                <Image
-                                    src="/Gemini_Generated_Image_foozcvfoozcvfooz.png"
-                                    alt="Menu Background"
-                                    fill
-                                    priority
-                                    unoptimized
-                                    className="object-cover object-center"
-                                    sizes="100vw"
-                                />
-                            </motion.div>
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
-                        </div>
-
                         <motion.div
                             key="food"
                             variants={shutterVariants}
@@ -333,7 +328,7 @@ export default function MenuPage() {
                                             <RowDivider />
                                             <div className="flex flex-wrap justify-center gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
                                                 {foodItems.slice(rowIndex * 4, (rowIndex + 1) * 4).map((item, idx) => (
-                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} />
+                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} isPriority={view === "food" && (idx + rowIndex * 4) < 4} />
                                                 ))}
                                             </div>
                                         </React.Fragment>
@@ -347,18 +342,6 @@ export default function MenuPage() {
                 {view === "drinks" && (
                     <div className="relative w-full min-h-screen">
                         <LaiLaoPattern />
-
-                        {/* Background Blur */}
-                        <div className="fixed top-0 left-0 right-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
-                            <motion.div
-                                initial={{ scale: 1.1, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 0.2 }}
-                                transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-[100px]"
-                                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920")' }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
-                        </div>
 
                         <motion.div
                             key="drinks"
@@ -385,7 +368,7 @@ export default function MenuPage() {
                                             <RowDivider />
                                             <div className="flex flex-wrap justify-center gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
                                                 {drinkItems.slice(rowIndex * 4, (rowIndex + 1) * 4).map((item, idx) => (
-                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} />
+                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} isPriority={view === "drinks" && (idx + rowIndex * 4) < 4} />
                                                 ))}
                                             </div>
                                         </React.Fragment>

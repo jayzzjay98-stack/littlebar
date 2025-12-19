@@ -48,8 +48,8 @@ function HeroSection() {
           alt="Intimate atmosphere and warm lighting at LITTLE LAO bar"
           fill
           priority
+          sizes="(max-width: 768px) 100vw, 100vw"
           className="object-cover object-top"
-          sizes="100vw"
         />
         {/* Dark overlay for mobile */}
         <div className="absolute inset-0 bg-black/50" />
@@ -69,8 +69,8 @@ function HeroSection() {
             alt="LITTLE LAO premium craftsmanship and speakeasy bar sign in Niseko"
             fill
             priority
+            sizes="(max-width: 768px) 100vw, 100vw"
             className="object-cover object-center"
-            sizes="100vw"
           />
         </div>
         {/* 2. Magic Filters: Dark Luxury Theme */}
@@ -162,6 +162,7 @@ function AboutSection() {
           src="/about-lao-bar.webp"
           alt="Authentic Lao bar atmosphere at LITTLE LAO"
           fill
+          priority
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />

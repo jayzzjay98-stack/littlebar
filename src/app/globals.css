@@ -58,11 +58,6 @@ html {
 
 body {
   background: var(--background);
-  background-image: url('/new.jpg?v=2');
-  background-size: cover;
-  background-position: top center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
