@@ -39,27 +39,31 @@ const staggerContainer = {
 // ========== HERO SECTION ==========
 function HeroSection() {
   return (
-    <section id="home" className="relative h-[85dvh] md:h-screen w-full overflow-hidden">
+    <section id="home" className="glp-section relative h-[85dvh] md:h-screen w-full overflow-hidden">
       {/* 1. Background Image */}
+      {/* Mobile Background - no zoom */}
+      <div className="md:hidden absolute inset-0 z-0">
+        <Image
+          src="/bg-mobile.webp"
+          alt="Intimate atmosphere and warm lighting at LITTLE LAO bar"
+          fill
+          priority
+          className="object-cover object-top"
+          sizes="100vw"
+        />
+        {/* Dark overlay for mobile */}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+      </div>
+
+      {/* Desktop Background - with zoom animation */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="hidden md:block absolute inset-0 z-0"
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 3, ease: "easeOut" }}
       >
-        {/* Mobile Background */}
-        <div className="md:hidden relative w-full h-full">
-          <Image
-            src="/bg-mobile.jpg"
-            alt="Intimate atmosphere and warm lighting at LITTLE LAO bar"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-        {/* Desktop Background */}
-        <div className="hidden md:block relative w-full h-full">
+        <div className="relative w-full h-full">
           <Image
             src="/bg-main.webp"
             alt="LITTLE LAO premium craftsmanship and speakeasy bar sign in Niseko"
@@ -85,8 +89,8 @@ function HeroSection() {
           {/* Small Tagline */}
           <motion.p
             variants={fadeUp}
-            className="text-gray-300 tracking-[0.3em] text-xs md:text-sm uppercase"
-            style={{ fontFamily: "var(--font-lato)", marginBottom: '20px' }}
+            className="glp-movable text-gray-300 tracking-[0.3em] text-xs md:text-sm uppercase"
+            style={{ fontFamily: "var(--font-lato)", marginBottom: '20px', '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
           >
             Original Taste of Luang Prabang
           </motion.p>
@@ -94,8 +98,8 @@ function HeroSection() {
           {/* Main Title - LITTLE LAO */}
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] drop-shadow-2xl"
-            style={{ fontFamily: "var(--font-cinzel)", marginBottom: '10px' }}
+            className="glp-movable text-5xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] drop-shadow-2xl"
+            style={{ fontFamily: "var(--font-cinzel)", marginBottom: '10px', '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
           >
             LITTLE LAO <span className="text-xs opacity-20">v2</span>
           </motion.h1>
@@ -105,35 +109,14 @@ function HeroSection() {
           {/* Subtitle */}
           <motion.p
             variants={fadeUp}
-            className="text-white text-3xl md:text-5xl tracking-wide"
-            style={{ fontFamily: "'Caveat'" }}
+            className="glp-movable text-white text-3xl md:text-5xl tracking-wide"
+            style={{ fontFamily: "'Caveat'", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
           >
             Bar and Culture
           </motion.p>
         </motion.div>
       </div>
 
-      {/* 4. Scroll Down Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-      >
-        <span
-          className="text-[#A1A1AA] text-xs uppercase tracking-[0.3em]"
-          style={{ fontFamily: "var(--font-lato)" }}
-        >
-          Scroll
-        </span>
-        <motion.div
-          className="w-6 h-10 border-2 border-[#D4AF37]/60 rounded-full flex justify-center pt-2"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="w-1.5 h-3 bg-[#D4AF37] rounded-full" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
@@ -141,48 +124,29 @@ function HeroSection() {
 // ========== ABOUT SECTION ==========
 function AboutSection() {
   return (
-    <section id="about" className="flex flex-col lg:flex-row min-h-[80vh]">
+    <section id="about" className="glp-section flex flex-col lg:flex-row min-h-[80vh]">
       {/* Left - Text */}
       <motion.div
-        className="lg:w-1/2 bg-black/40 flex items-center justify-center px-8 md:px-16 py-20"
+        className="lg:w-1/2 bg-black/40 flex items-center justify-center px-6 md:px-16 py-12 lg:py-20"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="max-w-md">
-          <h3
-            className="text-4xl md:text-5xl text-[#D4AF37] mb-6"
-            style={{ fontFamily: "var(--font-great-vibes)" }}
+        <div className="max-w-lg text-center lg:text-left">
+          <h2
+            className="glp-movable text-4xl sm:text-5xl md:text-6xl text-[#D4AF37] mb-6 lg:mb-8"
+            style={{ fontFamily: "var(--font-great-vibes)", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
           >
             About Little Lao
-          </h3>
+          </h2>
 
           <p
-            className="text-[#A1A1AA] leading-relaxed mb-6"
+            className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed mb-8 lg:mb-10"
             style={{ fontFamily: "var(--font-lato)" }}
           >
-            Nestled in the heart of Niseko, LITTLE LAO has been a sanctuary for
-            discerning spirits since 2016. Our intimate speakeasy atmosphere
-            offers an escape from the ordinary, where every moment becomes
-            memorable.
+            We take pride in serving the 'Original Taste of Luang Prabang featuring authentic Lao cuisine crafted from time-honored recipes alongside our signature artisanal cocktails. From locally sourced botanicals to rare spirits, each creation is prepared with precision and passion by our master team to celebrate the vibrant spirit of Laos.
           </p>
-
-          <p
-            className="text-[#A1A1AA] leading-relaxed mb-8"
-            style={{ fontFamily: "var(--font-lato)" }}
-          >
-            We take pride in our curated selection of rare Japanese whiskies and
-            artisanal cocktails, each crafted with precision and passion by our
-            master bartenders.
-          </p>
-
-          <Link
-            href="/#menu"
-            className="inline-block px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all"
-          >
-            Learn More
-          </Link>
         </div>
       </motion.div>
 
@@ -195,8 +159,8 @@ function AboutSection() {
         transition={{ duration: 0.6 }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?q=80&w=2070&auto=format&fit=crop"
-          alt="Curated collection of rare Japanese whiskies at LITTLE LAO"
+          src="/about-lao-bar.webp"
+          alt="Authentic Lao bar atmosphere at LITTLE LAO"
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -233,7 +197,7 @@ const events = [
 
 function EventsSection({ onReserveClick }: { onReserveClick?: () => void }) {
   return (
-    <section id="events" className="bg-black/40 py-20">
+    <section id="events" className="glp-section bg-black/40 py-20">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -241,12 +205,12 @@ function EventsSection({ onReserveClick }: { onReserveClick?: () => void }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h3
-            className="text-5xl text-[#D4AF37] mb-4"
-            style={{ fontFamily: "var(--font-great-vibes)" }}
+          <h2
+            className="glp-movable text-5xl text-[#D4AF37] mb-4"
+            style={{ fontFamily: "var(--font-great-vibes)", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
           >
             Upcoming Events
-          </h3>
+          </h2>
           <p
             className="text-[#A1A1AA] text-sm"
             style={{ fontFamily: "var(--font-lato)" }}
@@ -292,7 +256,8 @@ function EventsSection({ onReserveClick }: { onReserveClick?: () => void }) {
         <div className="text-center mt-12">
           <button
             onClick={onReserveClick}
-            className="px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all"
+            className="glp-movable px-8 py-3 border border-[#D4AF37] text-white tracking-wider uppercase text-sm hover:bg-[#D4AF37] hover:text-black transition-all"
+            style={{ '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
           >
             Reserve Now
           </button>
@@ -307,32 +272,32 @@ const signatureDrinks = [
   {
     name: "Bar Bin",
     ingredients: "Burnt Coconut Whiskey / Coconut Juice / Paksong Coffee / Jackfruit Foam",
-    image: "/cocktail-1.png",
+    image: "/cocktail-1.webp",
   },
   {
     name: "Little Lao Eggnog",
     ingredients: "Hine VSOP Cognac / Coconut Cream / Heavy Cream / Mak Mart Peppercorn / Egg",
-    image: "/cocktail-2.png",
+    image: "/cocktail-2.webp",
   },
   {
     name: "Lao Mulled Wine",
     ingredients: "Côte du Rhône / Mak Mont Mulberry / Orange / Mak Toom Bale / Star Anise",
-    image: "/cocktail-3.png",
+    image: "/cocktail-3.webp",
   },
   {
     name: "Lemongrass Gin",
     ingredients: "London Dry Gin / Fresh Lemongrass / Lime / Honey Syrup / Soda Water",
-    image: "/cocktail-4.png",
+    image: "/cocktail-4.webp",
   },
   {
     name: "Mekong Sunset",
     ingredients: "Lao White Rum / Passion Fruit / Mango / Lime / Orgeat Syrup",
-    image: "/cocktail-5.png",
+    image: "/cocktail-5.webp",
   },
   {
     name: "Jasmine Royale",
     ingredients: "Premium Vodka / Jasmine Tea / Elderflower / Lemon / Champagne Float",
-    image: "/cocktail-6.png",
+    image: "/cocktail-6.webp",
   },
 ];
 
@@ -365,17 +330,9 @@ function MenuSection() {
   return (
     <section
       id="menu"
-      className="relative bg-black/60 overflow-hidden"
+      className="glp-section relative bg-black/60 overflow-hidden"
       style={{ paddingTop: '60px', paddingBottom: '80px' }}
     >
-      {/* Background Title Blur/Image - Extended Long */}
-      <div className="absolute top-0 left-0 right-0 h-full min-h-[100vh] overflow-hidden z-0 pointer-events-none">
-        <div
-          className="absolute inset-0 bg-cover bg-center grayscale opacity-20 blur-2xl scale-110"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1920")' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black" />
-      </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -395,8 +352,8 @@ function MenuSection() {
               }}
             />
             <motion.h2
-              className="text-3xl md:text-5xl lg:text-6xl text-[#D4AF37] whitespace-nowrap"
-              style={{ fontFamily: "'Caveat'" }}
+              className="glp-movable text-3xl md:text-5xl lg:text-6xl text-[#D4AF37] whitespace-nowrap"
+              style={{ fontFamily: "'Caveat'", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
             >
               Signature Drinks
             </motion.h2>
@@ -644,17 +601,9 @@ function FoodMenuSection() {
   return (
     <section
       id="food-menu"
-      className="relative bg-black/50 overflow-hidden"
+      className="glp-section relative bg-black/50 overflow-hidden"
       style={{ paddingTop: '60px', paddingBottom: '80px' }}
     >
-      {/* Background Title Blur/Image - Extended Long */}
-      <div className="absolute top-0 left-0 right-0 h-full min-h-[100vh] overflow-hidden z-0 pointer-events-none">
-        <div
-          className="absolute inset-0 bg-cover bg-center grayscale opacity-20 blur-2xl scale-110"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1920")' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black" />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
@@ -675,8 +624,8 @@ function FoodMenuSection() {
               }}
             />
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl text-[#D4AF37]"
-              style={{ fontFamily: "'Caveat'" }}
+              className="glp-movable text-4xl md:text-5xl lg:text-6xl text-[#D4AF37]"
+              style={{ fontFamily: "'Caveat'", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
             >
               Signature Dishes
             </motion.h2>
@@ -725,12 +674,12 @@ function FoodMenuSection() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div className="mb-4">
-                  <h4
+                  <h3
                     className="text-2xl text-white group-hover:text-[#D4AF37] transition-colors"
                     style={{ fontFamily: "'Koblenz'" }}
                   >
                     {food.name}
-                  </h4>
+                  </h3>
                 </div>
                 <p
                   className="text-[#A1A1AA] text-base leading-relaxed"
@@ -761,12 +710,12 @@ function FoodMenuSection() {
                 variants={fadeUp}
                 style={{ marginBottom: '20px' }}
               >
-                <h4
+                <h3
                   className="text-4xl text-white group-hover:text-[#D4AF37] transition-colors duration-300 mb-6"
                   style={{ fontFamily: "'Koblenz'" }}
                 >
                   {food.name}
-                </h4>
+                </h3>
                 <p
                   className="text-[#A1A1AA] text-lg leading-relaxed"
                   style={{ fontFamily: "'Cause'" }}
@@ -795,16 +744,6 @@ function FoodMenuSection() {
                 sizes="(min-width: 1024px) 50vw, 0px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-              {/* Image Caption */}
-              <div className="absolute bottom-6 left-6 right-6 text-center">
-                <p
-                  className="text-white/90 text-sm italic"
-                  style={{ fontFamily: "var(--font-lato)" }}
-                >
-                  Authentic Lao cuisine, crafted with tradition
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -929,20 +868,19 @@ function Footer() {
         {/* Logo - Centered */}
         <div className="text-center" style={{ marginBottom: '10px' }}>
           <img
-            src="/logo%20final.png"
+            src="/logo-final.webp"
             alt="Little Lao"
             style={{ height: '320px', margin: '0 auto', marginTop: '-80px' }}
           />
         </div>
 
-        {/* Info - Centered */}
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16 justify-center items-start md:items-start" style={{ marginTop: '-60px' }}>
-
+        {/* Desktop Footer - Original Layout */}
+        <div className="hidden md:flex md:flex-row gap-16 justify-center items-start" style={{ marginTop: '-60px' }}>
           {/* Location */}
           <div className="flex items-start gap-4">
             <MapPin size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
-              <p className="text-white/80 text-lg md:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
                 Sisavangvong Road<br />
                 Luang Prabang, Laos
               </p>
@@ -953,7 +891,7 @@ function Footer() {
           <div className="flex items-start gap-4">
             <Clock size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
-              <p className="text-white/80 text-lg md:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
                 Mon - Thurs: 6pm - 1am<br />
                 Fri: 6pm - 2am<br />
                 Sat: 3pm - 2am
@@ -962,33 +900,76 @@ function Footer() {
           </div>
 
           {/* Contact + Social */}
+          <div className="flex items-start gap-4">
+            <Phone size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+            <div>
+              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                +856 71 254 678
+              </p>
+              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                info@littlelao.la
+              </p>
+              <div className="flex gap-3" style={{ marginTop: '15px' }}>
+                <a href="#" className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                  <Facebook size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                </a>
+                <a href="#" className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                  <Instagram size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                </a>
+                <a href="#" className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                  <Twitter size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Footer - 2 Column Grid */}
+        <div className="md:hidden grid grid-cols-2 gap-6" style={{ marginTop: '-60px' }}>
+          {/* Left Column: Location */}
+          <div className="flex items-start gap-3">
+            <MapPin size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+            <div>
+              <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                Sisavangvong Road<br />
+                Luang Prabang, Laos
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Hours + Contact stacked */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-start gap-4">
-              <Phone size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+            {/* Hours */}
+            <div className="flex items-start gap-3">
+              <Clock size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
               <div>
-                <p className="text-white/80 text-lg md:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                  +856 71 254 678<br />
+                <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                  Mon - Thurs: 6pm - 1am<br />
+                  Fri: 6pm - 2am<br />
+                  Sat: 3pm - 2am
+                </p>
+              </div>
+            </div>
+
+            {/* Contact + Social */}
+            <div className="flex items-start gap-3">
+              <Phone size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
+              <div>
+                <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                  +856 71 254 678
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
                   info@littlelao.la
                 </p>
-                {/* Social Icons */}
-                <div className="flex gap-3" style={{ marginTop: '15px' }}>
-                  <a
-                    href="#"
-                    className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300"
-                  >
-                    <Facebook size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                <div className="flex gap-2" style={{ marginTop: '10px' }}>
+                  <a href="#" className="w-8 h-8 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                    <Facebook size={14} className="text-[#D4AF37] group-hover:text-black transition-colors" />
                   </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300"
-                  >
-                    <Instagram size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                  <a href="#" className="w-8 h-8 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                    <Instagram size={14} className="text-[#D4AF37] group-hover:text-black transition-colors" />
                   </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300"
-                  >
-                    <Twitter size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                  <a href="#" className="w-8 h-8 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                    <Twitter size={14} className="text-[#D4AF37] group-hover:text-black transition-colors" />
                   </a>
                 </div>
               </div>
@@ -1008,7 +989,7 @@ export default function Home() {
 
   return (
     <main>
-      <Navbar onReserveClick={openReservation} />
+      <Navbar />
       <HeroSection />
       <AboutSection />
       <MenuSection />

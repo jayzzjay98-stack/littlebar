@@ -111,8 +111,13 @@ body {
   display: none;
 }
 
+/* Navbar extended blur */
+nav.fixed {
+  padding-bottom: 10px !important;
+}
+
 /* ======================================================================
-   GLOBAL LAYOUT POLICY (GLP)
+   GLOBAL LAYOUT POLICY (GLP) v2.0
    
    This system enables independent element positioning using transforms
    instead of margin/padding, ensuring zero-interference between elements.
@@ -123,6 +128,8 @@ body {
    For absolute freedom, combine with glp-absolute or glp-fixed:
    <div className="glp-relative">
      <span className="glp-absolute glp-movable" style={{ '--x-offset': '100px' }}>
+   
+   Responsive Usage: Use --sm-x-offset, --md-x-offset, --lg-x-offset, --xl-x-offset
    ====================================================================== */
 
 /* GLP Positioning Variables - Default values */
@@ -130,9 +137,42 @@ body {
   --x-offset: 0px;
   --y-offset: 0px;
   --z-layer: auto;
+  --sm-x-offset: var(--x-offset);
+  --sm-y-offset: var(--y-offset);
+  --md-x-offset: var(--x-offset);
+  --md-y-offset: var(--y-offset);
+  --lg-x-offset: var(--x-offset);
+  --lg-y-offset: var(--y-offset);
+  --xl-x-offset: var(--x-offset);
+  --xl-y-offset: var(--y-offset);
   transform: translate(var(--x-offset), var(--y-offset)) !important;
   z-index: var(--z-layer);
   will-change: transform;
+}
+
+/* Responsive GLP - Mobile First */
+@media (min-width: 640px) {
+  .glp-movable {
+    transform: translate(var(--sm-x-offset), var(--sm-y-offset)) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .glp-movable {
+    transform: translate(var(--md-x-offset), var(--md-y-offset)) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .glp-movable {
+    transform: translate(var(--lg-x-offset), var(--lg-y-offset)) !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .glp-movable {
+    transform: translate(var(--xl-x-offset), var(--xl-y-offset)) !important;
+  }
 }
 
 /* Absolute Freedom - Position Utilities */
@@ -165,16 +205,16 @@ body {
   overflow: visible !important;
 }
 
-/* GLP No-Interference - Prevents layout shift when moving */
+/* GLP No-Interference - Prevents Framer Motion/GSAP from overwriting transforms */
 .glp-no-shift {
   position: relative;
-  display: inline-block;
+  display: contents;
 }
 
-.glp-no-shift>.glp-movable {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* GLP Section - Apply to section containers */
+.glp-section {
+  position: relative;
+  overflow: visible !important;
 }
 
 /* GLP Rotate + Scale Extensions */
@@ -184,7 +224,7 @@ body {
   --rotation: 0deg;
   --scale: 1;
   --z-layer: auto;
-  transform: translate(var(--x-offset), var(--y-offset)) rotate(var(--rotation)) scale(var(--scale));
+  transform: translate(var(--x-offset), var(--y-offset)) rotate(var(--rotation)) scale(var(--scale)) !important;
   z-index: var(--z-layer);
   will-change: transform;
 }

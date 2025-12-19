@@ -8,14 +8,14 @@ import Link from "next/link";
 // ========== DATA MOCKUPS ==========
 
 const foodItems = [
-    { id: 1, name: "LAAP PED", description: "Minced Duck / Toasted Rice / Fresh Herbs / Fish Sauce / Lime", isSignature: true, img: "/laap-ped.png" },
-    { id: 2, name: "KHAO PIAK SEN", description: "Rice Noodles / Chicken Broth / Poached Chicken / Crispy Garlic", isSignature: false, img: "/khao-piak-sen.png" },
-    { id: 3, name: "OR LAM", description: "Buffalo Meat / Lao Eggplant / Sakaan Wood / Chili Paste / Dill", isSignature: true, img: "/or-lam.png" },
-    { id: 4, name: "CRISPY PORK BELLY", description: "Honey Glaze / Five Spice / Pickled Radish", isSignature: false, img: "/crispy-pork-belly.png" },
-    { id: 5, name: "MISO GLAZED SEA BASS", description: "Ginger-Soy / Bok Choy / Sesame Crisps", isSignature: false, img: "/miso-sea-bass.png" },
-    { id: 6, name: "A5 WAGYU STRIPLOIN", description: "Miyazaki Prefecture / Garlic Chips / Sea Salt", isSignature: true, img: "/a5-wagyu.png" },
-    { id: 7, name: "HOKKAIDO SCALLOPS", description: "Uni Cream / Ikura / Shiso Oil", isSignature: true, img: "/hokkaido-scallops.png" },
-    { id: 8, name: "DUCK CONFIT", description: "Orange Glaze / Parsnip Puree / Crispy Skin", isSignature: false, img: "/duck-confit.png" },
+    { id: 1, name: "LAAP PED", description: "Minced Duck / Toasted Rice / Fresh Herbs / Fish Sauce / Lime", isSignature: true, img: "/laap-ped.webp" },
+    { id: 2, name: "KHAO PIAK SEN", description: "Rice Noodles / Chicken Broth / Poached Chicken / Crispy Garlic", isSignature: false, img: "/khao-piak-sen.webp" },
+    { id: 3, name: "OR LAM", description: "Buffalo Meat / Lao Eggplant / Sakaan Wood / Chili Paste / Dill", isSignature: true, img: "/or-lam.webp" },
+    { id: 4, name: "CRISPY PORK BELLY", description: "Honey Glaze / Five Spice / Pickled Radish", isSignature: false, img: "/crispy-pork-belly.webp" },
+    { id: 5, name: "MISO GLAZED SEA BASS", description: "Ginger-Soy / Bok Choy / Sesame Crisps", isSignature: false, img: "/miso-sea-bass.webp" },
+    { id: 6, name: "A5 WAGYU STRIPLOIN", description: "Miyazaki Prefecture / Garlic Chips / Sea Salt", isSignature: true, img: "/a5-wagyu.webp" },
+    { id: 7, name: "HOKKAIDO SCALLOPS", description: "Uni Cream / Ikura / Shiso Oil", isSignature: true, img: "/hokkaido-scallops.webp" },
+    { id: 8, name: "DUCK CONFIT", description: "Orange Glaze / Parsnip Puree / Crispy Skin", isSignature: false, img: "/duck-confit.webp" },
     { id: 9, name: "TAM MAK HOONG", description: "Green Papaya / Lime / Chili / Fermented Fish Sauce", isSignature: true, img: "/food-menu.webp" },
     { id: 10, name: "SAI OUA", description: "Lao Herbal Sausage / Lemongrass / Dill / Kaffir Lime", isSignature: false, img: "/food-menu.webp" },
     { id: 11, name: "KHAO NIEW", description: "Premium Steamed Sticky Rice / Bamboo Basket", isSignature: false, img: "/food-menu.webp" },
@@ -23,18 +23,18 @@ const foodItems = [
 ];
 
 const drinkItems = [
-    { id: 1, name: "SMOKED OLD FASHIONED", description: "Bourbon / Maple / Cedar Smoke", img: "/cocktail-1.png" },
-    { id: 2, name: "HIBIKI 17 YEARS", description: "Blended Japanese Whisky / Floral & Sweet", img: "/cocktail-2.png" },
-    { id: 3, name: "SIGNATURE GIN TONIC", description: "Botanical Gin / Yuzu / Premium Tonic", img: "/cocktail-3.png" },
-    { id: 4, name: "YAMAZAKI SINGLE MALT", description: "Mizunara Cask / Fruity & Spicy", img: "/cocktail-4.png" },
-    { id: 5, name: "NEGRONI ROYALE", description: "Special Blend Vermouth / Gold Flakes", img: "/cocktail-5.png" },
-    { id: 6, name: "ESPRESSO MARTINI", description: "Fresh Brewed Arabica / Vanilla Bean", img: "/cocktail-6.png" },
-    { id: 7, name: "MEKONG SUNSET", description: "Lao Rum / Passion Fruit / Hibiscus", img: "/cocktail-1.png" },
-    { id: 8, name: "LAO MOJITO", description: "Lao Sticky Rice Spirit / Mint / Lime / Pandan", img: "/cocktail-2.png" },
-    { id: 9, name: "LOTUS BLOSSOM", description: "Jinzu Gin / Lychee / Rose / Sparkling Wine", img: "/cocktail-3.png" },
-    { id: 10, name: "GINGER LILY", description: "Vodka / Fresh Ginger / Honey / Lemon", img: "/cocktail-4.png" },
-    { id: 11, name: "SPICY MANGO", description: "Tequila / Mango / Bird's Eye Chili / Agave", img: "/cocktail-5.png" },
-    { id: 12, name: "COCONUT DREAM", description: "Dark Rum / Coconut Cream / Pineapple / Nutmeg", img: "/cocktail-6.png" },
+    { id: 1, name: "SMOKED OLD FASHIONED", description: "Bourbon / Maple / Cedar Smoke", img: "/cocktail-1.webp" },
+    { id: 2, name: "HIBIKI 17 YEARS", description: "Blended Japanese Whisky / Floral & Sweet", img: "/cocktail-2.webp" },
+    { id: 3, name: "SIGNATURE GIN TONIC", description: "Botanical Gin / Yuzu / Premium Tonic", img: "/cocktail-3.webp" },
+    { id: 4, name: "YAMAZAKI SINGLE MALT", description: "Mizunara Cask / Fruity & Spicy", img: "/cocktail-4.webp" },
+    { id: 5, name: "NEGRONI ROYALE", description: "Special Blend Vermouth / Gold Flakes", img: "/cocktail-5.webp" },
+    { id: 6, name: "ESPRESSO MARTINI", description: "Fresh Brewed Arabica / Vanilla Bean", img: "/cocktail-6.webp" },
+    { id: 7, name: "MEKONG SUNSET", description: "Lao Rum / Passion Fruit / Hibiscus", img: "/cocktail-1.webp" },
+    { id: 8, name: "LAO MOJITO", description: "Lao Sticky Rice Spirit / Mint / Lime / Pandan", img: "/cocktail-2.webp" },
+    { id: 9, name: "LOTUS BLOSSOM", description: "Jinzu Gin / Lychee / Rose / Sparkling Wine", img: "/cocktail-3.webp" },
+    { id: 10, name: "GINGER LILY", description: "Vodka / Fresh Ginger / Honey / Lemon", img: "/cocktail-4.webp" },
+    { id: 11, name: "SPICY MANGO", description: "Tequila / Mango / Bird's Eye Chili / Agave", img: "/cocktail-5.webp" },
+    { id: 12, name: "COCONUT DREAM", description: "Dark Rum / Coconut Cream / Pineapple / Nutmeg", img: "/cocktail-6.webp" },
 ];
 
 // ========== ICONS & TEXTURES ==========
@@ -73,46 +73,49 @@ const LaoCornerMotif = ({ className }: { className?: string }) => (
 
 const RestaurantMenuCard = ({ item, index }: { item: any; index: number }) => {
     return (
-        <motion.div
-            className="group relative flex flex-col items-center w-[45%] md:w-[30%] lg:w-[22%] xl:w-[18%] min-w-[140px] px-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.05 }}
-        >
-            {/* Image Container with Lao Frame */}
-            <div className="relative aspect-square w-full mb-6 transition-all duration-500">
-                {/* Gold Frame */}
-                <div className="absolute inset-0 border border-[#D4AF37]/30 group-hover:border-[#D4AF37] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-500 rounded-sm" />
+        <div className="glp-no-shift">
+            <motion.div
+                className="glp-movable group relative flex flex-col items-center w-[45%] md:w-[30%] lg:w-[22%] xl:w-[18%] min-w-[140px] px-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                style={{ '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
+            >
+                {/* Image Container with Lao Frame */}
+                <div className="relative aspect-square w-full mb-6 transition-all duration-500">
+                    {/* Gold Frame */}
+                    <div className="absolute inset-0 border border-[#D4AF37]/30 group-hover:border-[#D4AF37] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-500 rounded-sm" />
 
-                {/* Corner Motifs */}
-                <LaoCornerMotif className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4" />
-                <LaoCornerMotif className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 rotate-90" />
-                <LaoCornerMotif className="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/4 -rotate-90" />
-                <LaoCornerMotif className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 rotate-180" />
+                    {/* Corner Motifs */}
+                    <LaoCornerMotif className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4" />
+                    <LaoCornerMotif className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 rotate-90" />
+                    <LaoCornerMotif className="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/4 -rotate-90" />
+                    <LaoCornerMotif className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 rotate-180" />
 
-                <div className="relative w-full h-full overflow-hidden rounded-sm">
-                    <motion.img
-                        src={item.img}
-                        alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+                    <div className="relative w-full h-full overflow-hidden rounded-sm">
+                        <motion.img
+                            src={item.img}
+                            alt={item.name}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+                    </div>
                 </div>
-            </div>
 
-            {/* Content */}
-            <div className="text-center w-full">
-                <h3 className="text-sm md:text-base tracking-[0.2em] text-[#D4AF37] mb-2 font-medium"
-                    style={{ fontFamily: "var(--font-cinzel)" }}>
-                    {item.name}
-                </h3>
-                <p className="text-[10px] md:text-xs text-white/50 tracking-wider font-light leading-relaxed max-w-[200px] mx-auto"
-                    style={{ fontFamily: "var(--font-lato)" }}>
-                    {item.description}
-                </p>
-            </div>
-        </motion.div>
+                {/* Content */}
+                <div className="text-center w-full">
+                    <h3 className="text-sm md:text-base tracking-[0.2em] text-[#D4AF37] mb-2 font-medium"
+                        style={{ fontFamily: "var(--font-cinzel)" }}>
+                        {item.name}
+                    </h3>
+                    <p className="text-[10px] md:text-xs text-white/50 tracking-wider font-light leading-relaxed max-w-[200px] mx-auto"
+                        style={{ fontFamily: "var(--font-lato)" }}>
+                        {item.description}
+                    </p>
+                </div>
+            </motion.div>
+        </div>
     );
 };
 
@@ -167,23 +170,23 @@ export default function MenuPage() {
         enter: {
             clipPath: "inset(0 0% 0 0)",
             opacity: 1,
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+            transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] }
         },
         exit: {
             clipPath: "inset(0 0 0 100%)",
             opacity: 0,
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+            transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] }
         }
     };
 
     return (
-        <main className="min-h-screen transition-colors duration-1000 relative overflow-x-hidden selection:bg-[#D4AF37]/30 bg-black">
+        <main className="glp-section min-h-screen transition-colors duration-1000 relative overflow-x-hidden selection:bg-[#D4AF37]/30 bg-black">
 
             {/* TOP NAVIGATION OVERLAY */}
-            <nav className="fixed top-20 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 flex items-center justify-between max-w-[1400px] mx-auto pointer-events-none">
+            <nav className="glp-overflow-visible fixed top-8 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 flex items-center justify-between max-w-[1400px] mx-auto pointer-events-none">
                 <button
                     onClick={() => view === "selection" ? window.location.href = "/" : setView("selection")}
-                    className="glp-movable flex items-center justify-center gap-3 px-6 py-3 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm text-xs md:text-sm tracking-[0.3em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-black/60 hover:text-[#FFD700] transition-all duration-300 group min-w-[120px] md:min-w-[140px] pointer-events-auto"
+                    className="glp-movable flex items-center justify-center gap-2 px-4 py-2.5 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm text-xs md:text-sm tracking-[0.3em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-black/60 hover:text-[#FFD700] transition-all duration-300 group min-w-[100px] md:min-w-[120px] pointer-events-auto"
                     style={{ '--x-offset': '20px' } as React.CSSProperties}
                 >
                     <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform flex-shrink-0" />
@@ -193,8 +196,8 @@ export default function MenuPage() {
                 {view !== "selection" ? (
                     <button
                         onClick={() => setView(view === "food" ? "drinks" : "food")}
-                        className="glp-movable flex items-center justify-center gap-3 px-6 py-3 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm hover:border-[#D4AF37] hover:bg-black/60 transition-all duration-300 group min-w-[140px] md:min-w-[160px] pointer-events-auto"
-                        style={{ '--x-offset': '40px' } as React.CSSProperties}
+                        className="flex items-center justify-center gap-3 px-6 py-3 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm hover:border-[#D4AF37] hover:bg-black/60 transition-colors duration-300 group min-w-[140px] md:min-w-[160px] pointer-events-auto"
+                        style={{ marginRight: '-220px' }}
                     >
                         <ArrowRightLeft size={14} className="text-[#D4AF37] group-hover:text-[#FFD700] transition-colors flex-shrink-0" />
                         <span className="text-xs md:text-sm tracking-[0.3em] font-medium uppercase text-[#D4AF37] group-hover:text-[#FFD700] transition-colors">
@@ -225,15 +228,15 @@ export default function MenuPage() {
                         <div className="absolute inset-0 bg-black/70" />
 
                         {/* Content */}
-                        <div className="relative z-10 h-full flex flex-col items-center justify-center pt-16">
+                        <div className="relative z-10 h-full flex flex-col items-center justify-center">
                             {/* Logo */}
                             <h1
                                 className="text-3xl md:text-4xl text-[#D4AF37] tracking-[0.3em] mb-4"
-                                style={{ fontFamily: "var(--font-cinzel)" }}
+                                style={{ fontFamily: "var(--font-cinzel)", transform: 'translateY(-60px)' }}
                             >
                                 LITTLE LAO
                             </h1>
-                            <p className="text-xs tracking-[0.4em] text-white/40 uppercase mb-16" style={{ fontFamily: "var(--font-lato)" }}>
+                            <p className="text-xs tracking-[0.4em] text-white/40 uppercase mb-16" style={{ fontFamily: "var(--font-lato)", transform: 'translateY(-60px)' }}>
                                 THE MENU
                             </p>
 
@@ -289,7 +292,7 @@ export default function MenuPage() {
                                 initial={{ scale: 1.1, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 0.2 }}
                                 transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-3xl"
+                                className="absolute inset-0 bg-cover bg-center grayscale blur-[100px]"
                                 style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920")' }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
@@ -341,7 +344,7 @@ export default function MenuPage() {
                                 initial={{ scale: 1.1, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 0.2 }}
                                 transition={{ duration: 1.5 }}
-                                className="absolute inset-0 bg-cover bg-center grayscale blur-3xl"
+                                className="absolute inset-0 bg-cover bg-center grayscale blur-[100px]"
                                 style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920")' }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black to-black" />
