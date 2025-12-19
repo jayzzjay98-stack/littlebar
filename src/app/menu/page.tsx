@@ -177,32 +177,15 @@ export default function MenuPage() {
         <main className="glp-section min-h-screen transition-colors duration-1000 relative overflow-x-hidden selection:bg-[#D4AF37]/30 bg-black">
             {/* PERSISTENT GLOBAL BACKGROUND */}
             <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                {/* Desktop Background (Optimized JPG) */}
+                {/* Unified Background (Optimized JPG with blur) */}
                 <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.2 }}
-                    className="absolute inset-0 bg-cover bg-center grayscale blur-[100px] hidden md:block"
-                    style={{ backgroundImage: 'url("/new.jpg?v=3")' }}
+                    animate={{ opacity: 0.3 }}
+                    className="absolute inset-0 bg-cover bg-center grayscale blur-[100px]"
+                    style={{ backgroundImage: 'url("/new.jpg?v=4")' }}
                 />
 
-                {/* Mobile Background (High-Quality Lossless PNG) */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.8 }}
-                    className="absolute inset-0 md:hidden"
-                >
-                    <Image
-                        src="/Gemini_Generated_Image_foozcvfoozcvfooz.png?v=3"
-                        alt="Menu Background"
-                        fill
-                        priority
-                        unoptimized
-                        className="object-cover object-center"
-                        sizes="100vw"
-                    />
-                </motion.div>
-
-                {/* Dark Overlays matched across all views */}
+                {/* Dark Overlays matched across all devices */}
                 <div className="absolute inset-0 bg-black/60" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black" />
             </div>
