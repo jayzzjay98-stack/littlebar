@@ -7,6 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
     useEffect(() => {
+        // Force scroll to top on refresh
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
         gsap.registerPlugin(ScrollTrigger);
 
         const lenis = new Lenis({
@@ -19,6 +25,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             touchMultiplier: 2,
             infinite: false,
         });
+
+        // Ensure Lenis matches the initial scroll position
+        lenis.scrollTo(0, { immediate: true });
 
         lenis.on("scroll", ScrollTrigger.update);
 
