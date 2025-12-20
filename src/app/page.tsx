@@ -145,14 +145,14 @@ function AboutSection() {
             className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed mb-8 lg:mb-10"
             style={{ fontFamily: "var(--font-lato)" }}
           >
-            We take pride in serving the 'Original Taste of Luang Prabang featuring authentic Lao cuisine crafted from time-honored recipes alongside our signature artisanal cocktails. From locally sourced botanicals to rare spirits, each creation is prepared with precision and passion by our master team to celebrate the vibrant spirit of Laos.
+            Celebrating the abundance of Laos through stories, classical Luang Prabang cuisine, and market-to-glass cocktails with the rich offerings our sacred land and rivers provide.
           </p>
         </div>
       </motion.div>
 
       {/* Right - Image */}
       <motion.div
-        className="lg:w-1/2 min-h-[400px] lg:min-h-full relative"
+        className="lg:w-[45%] min-h-[400px] lg:min-h-full relative overflow-hidden lg:rounded-3xl lg:ml-16"
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -163,7 +163,7 @@ function AboutSection() {
           alt="Authentic Lao bar atmosphere at LITTLE LAO"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-left"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </motion.div>
@@ -345,7 +345,7 @@ function MenuSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-2 md:gap-4 lg:translate-x-[104px]">
+          <div className="flex items-center justify-center gap-2 md:gap-4">
             <motion.div
               className="h-0.5 rounded-full w-8 md:w-20"
               style={{
@@ -353,7 +353,7 @@ function MenuSection() {
               }}
             />
             <motion.h2
-              className="glp-movable text-3xl md:text-5xl lg:text-6xl text-[#D4AF37] whitespace-nowrap"
+              className="glp-movable text-3xl md:text-4xl lg:text-5xl text-[#D4AF37] whitespace-nowrap"
               style={{ fontFamily: "'Caveat'", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
             >
               Signature Drinks
@@ -611,7 +611,7 @@ function FoodMenuSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-4 lg:translate-x-[104px]">
+          <div className="flex items-center justify-center gap-4">
             <motion.div
               className="h-0.5 rounded-full"
               style={{
@@ -620,7 +620,7 @@ function FoodMenuSection() {
               }}
             />
             <motion.h2
-              className="glp-movable text-4xl md:text-5xl lg:text-6xl text-[#D4AF37]"
+              className="glp-movable text-4xl md:text-4xl lg:text-5xl text-[#D4AF37]"
               style={{ fontFamily: "'Caveat'", '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
             >
               Signature Dishes
@@ -779,7 +779,7 @@ function GallerySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-2 md:gap-4 lg:translate-x-[104px]">
+          <div className="flex items-center justify-center gap-2 md:gap-4">
             <motion.div
               className="h-0.5 rounded-full w-6 md:w-[60px]"
               style={{
@@ -787,7 +787,7 @@ function GallerySection() {
               }}
             />
             <motion.h3
-              className="text-2xl md:text-5xl text-[#D4AF37] text-center px-1"
+              className="text-2xl md:text-4xl text-[#D4AF37] text-center px-1"
               style={{ fontFamily: "'Caveat'" }}
             >
               Moments <br className="md:hidden" /> captured at LITTLE LAO

@@ -195,7 +195,7 @@ export default function MenuPage() {
             <nav className="glp-overflow-visible fixed top-8 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 flex items-center justify-between max-w-[1400px] mx-auto pointer-events-none">
                 <button
                     onClick={() => view === "selection" ? window.location.href = "/" : setView("selection")}
-                    className="glp-movable flex items-center justify-center gap-2 px-4 py-2.5 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm text-xs md:text-sm tracking-[0.3em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-black/60 hover:text-[#FFD700] transition-all duration-300 group min-w-[100px] md:min-w-[120px] pointer-events-auto"
+                    className="glp-movable flex items-center justify-center gap-2 px-4 py-2.5 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm text-[10px] md:text-xs tracking-[0.3em] text-[#D4AF37] hover:border-[#D4AF37] hover:bg-black/60 hover:text-[#FFD700] transition-all duration-300 group min-w-[100px] md:min-w-[120px] pointer-events-auto"
                     style={{ '--x-offset': '20px' } as React.CSSProperties}
                 >
                     <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform flex-shrink-0" />
@@ -206,10 +206,9 @@ export default function MenuPage() {
                     <button
                         onClick={() => setView(view === "food" ? "drinks" : "food")}
                         className="flex items-center justify-center gap-3 px-6 py-3 border border-[#D4AF37]/40 rounded-full bg-black/50 backdrop-blur-sm hover:border-[#D4AF37] hover:bg-black/60 transition-colors duration-300 group min-w-[140px] md:min-w-[160px] pointer-events-auto"
-                        style={{ marginRight: '-220px' }}
                     >
                         <ArrowRightLeft size={14} className="text-[#D4AF37] group-hover:text-[#FFD700] transition-colors flex-shrink-0" />
-                        <span className="text-xs md:text-sm tracking-[0.3em] font-medium uppercase text-[#D4AF37] group-hover:text-[#FFD700] transition-colors">
+                        <span className="text-[10px] md:text-xs tracking-[0.3em] font-medium uppercase text-[#D4AF37] group-hover:text-[#FFD700] transition-colors">
                             {view === "food" ? "SPIRITS" : "CUISINE"}
                         </span>
                     </button>
@@ -304,7 +303,7 @@ export default function MenuPage() {
                                 <div className="h-[1px] w-full max-w-4xl bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-8 opacity-50" />
                             </header>
 
-                            <div className="max-w-7xl mx-auto lg:translate-x-[104px]">
+                            <div className="max-w-7xl mx-auto">
                                 <div className="flex flex-col gap-y-16">
                                     {[0, 1, 2].map((rowIndex) => (
                                         <React.Fragment key={rowIndex}>
@@ -344,7 +343,7 @@ export default function MenuPage() {
                                 <div className="h-[1px] w-full max-w-4xl bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-8 opacity-50" />
                             </header>
 
-                            <div className="max-w-7xl mx-auto lg:translate-x-[104px]">
+                            <div className="max-w-7xl mx-auto">
                                 <div className="flex flex-col gap-y-16">
                                     {[0, 1, 2].map((rowIndex) => (
                                         <React.Fragment key={rowIndex}>
