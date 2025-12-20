@@ -88,7 +88,7 @@ const RestaurantMenuCard = ({ item, index, isPriority = false }: MenuCardProps) 
     return (
         <div className="glp-no-shift">
             <motion.div
-                className="glp-movable group relative flex flex-col items-center w-full min-w-[140px] px-2"
+                className="glp-movable group relative flex flex-col items-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -96,7 +96,7 @@ const RestaurantMenuCard = ({ item, index, isPriority = false }: MenuCardProps) 
                 style={{ '--x-offset': '0px', '--y-offset': '0px' } as React.CSSProperties}
             >
                 {/* Image Container with Lao Frame */}
-                <div className="relative aspect-square w-full mb-6 transition-all duration-500">
+                <div className="relative aspect-square w-full max-w-[140px] md:max-w-[160px] mx-auto mb-6 transition-all duration-500">
                     {/* Gold Frame */}
                     <div className="absolute inset-0 border border-[#D4AF37]/30 group-hover:border-[#D4AF37] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-500 rounded-sm" />
 
@@ -125,7 +125,7 @@ const RestaurantMenuCard = ({ item, index, isPriority = false }: MenuCardProps) 
                         style={{ fontFamily: "var(--font-cinzel)" }}>
                         {item.name}
                     </h3>
-                    <p className="text-[10px] md:text-xs text-white/50 tracking-wider font-light leading-relaxed max-w-[200px] mx-auto"
+                    <p className="text-[10px] md:text-xs text-white/50 tracking-wider font-light leading-relaxed max-w-[200px] mx-auto text-center"
                         style={{ fontFamily: "var(--font-lato)" }}>
                         {item.description}
                     </p>
@@ -305,9 +305,11 @@ export default function MenuPage() {
 
                             <div className="max-w-7xl mx-auto">
                                 <RowDivider />
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
+                                <div className="flex flex-wrap justify-center gap-y-8 gap-x-6">
                                     {foodItems.map((item, idx) => (
-                                        <RestaurantMenuCard key={item.id} item={item} index={idx} isPriority={view === "food" && idx < 4} />
+                                        <div key={item.id} className="w-[180px] md:w-[200px]">
+                                            <RestaurantMenuCard item={item} index={idx} isPriority={view === "food" && idx < 5} />
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -339,9 +341,11 @@ export default function MenuPage() {
 
                             <div className="max-w-7xl mx-auto">
                                 <RowDivider />
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
+                                <div className="flex flex-wrap justify-center gap-y-8 gap-x-6">
                                     {drinkItems.map((item, idx) => (
-                                        <RestaurantMenuCard key={item.id} item={item} index={idx} isPriority={view === "drinks" && idx < 4} />
+                                        <div key={item.id} className="w-[180px] md:w-[200px]">
+                                            <RestaurantMenuCard item={item} index={idx} isPriority={view === "drinks" && idx < 5} />
+                                        </div>
                                     ))}
                                 </div>
                             </div>
