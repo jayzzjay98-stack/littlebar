@@ -1024,9 +1024,8 @@ function Footer() {
             <Clock size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
               <p className="text-white/80 text-sm md:text-lg lg:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                Mon - Thurs: 6pm - 1am<br />
-                Fri: 6pm - 2am<br />
-                Sat: 3pm - 2am
+                Monday - Sunday<br />
+                11 AM - 11:30 PM
               </p>
             </div>
           </div>
@@ -1110,9 +1109,8 @@ function Footer() {
               <Clock size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
               <div>
                 <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                  Mon - Thurs: 6pm - 1am<br />
-                  Fri: 6pm - 2am<br />
-                  Sat: 3pm - 2am
+                  Monday - Sunday<br />
+                  11 AM - 11:30 PM
                 </p>
               </div>
             </div>
