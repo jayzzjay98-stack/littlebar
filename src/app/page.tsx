@@ -74,7 +74,7 @@ function HeroSection() {
           />
         </div>
         {/* 2. Magic Filters: Dark Luxury Theme */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/60 xl:bg-black/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       </motion.div>
 
@@ -124,10 +124,12 @@ function HeroSection() {
 // ========== ABOUT SECTION ==========
 function AboutSection() {
   return (
-    <section id="about" className="glp-section flex flex-col lg:flex-row min-h-[80vh]">
+    <section id="about" className="glp-section flex flex-col lg:flex-row min-h-0 lg:min-h-[80vh] relative bg-black">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
       {/* Left - Text */}
       <motion.div
-        className="lg:w-1/2 bg-black/40 flex items-center justify-center px-6 md:px-16 py-12 lg:py-20"
+        className="lg:w-1/2 bg-black/40 xl:bg-black/70 flex items-center justify-center px-6 md:px-16 py-12 lg:py-20"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -152,7 +154,7 @@ function AboutSection() {
 
       {/* Right - Image */}
       <motion.div
-        className="lg:w-[45%] min-h-[400px] lg:min-h-full relative overflow-hidden lg:rounded-3xl lg:ml-16"
+        className="w-[92%] mx-auto self-center relative overflow-hidden rounded-[40px] lg:rounded-3xl lg:w-[45%] min-h-[320px] lg:min-h-[500px] lg:ml-16 lg:mx-0"
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -198,7 +200,9 @@ const events = [
 
 function EventsSection({ onReserveClick }: { onReserveClick?: () => void }) {
   return (
-    <section id="events" className="glp-section bg-black/40 py-20">
+    <section id="events" className="glp-section bg-black/40 xl:bg-black/70 py-20 relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -331,15 +335,25 @@ function MenuSection() {
   return (
     <section
       id="menu"
-      className="glp-section relative bg-black/60 overflow-hidden"
-      style={{ paddingTop: '60px', paddingBottom: '80px' }}
+      className="glp-section relative bg-black/60 xl:bg-black/70 overflow-hidden md:pt-[60px] pb-20"
+      style={{ paddingTop: '100px' }}
     >
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div
+        className="max-w-7xl mx-auto relative z-10 glp-movable"
+        style={{ '--y-offset': '40px', '--md-y-offset': '0px' } as any}
+      >
         {/* Section Header */}
         <motion.div
-          className="text-center px-4"
-          style={{ marginBottom: '40px' }}
+          className="text-center px-4 mb-10 glp-movable z-20"
+          style={{
+            '--y-offset': '-70px',
+            '--sm-y-offset': '-60px',
+            '--md-y-offset': '-60px',
+            '--lg-y-offset': '0px'
+          } as any}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -368,7 +382,7 @@ function MenuSection() {
         </motion.div>
 
         {/* Mobile: Horizontal Scroll Snap Gallery */}
-        <div className="lg:hidden overflow-x-auto scroll-smooth pb-8 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="xl:hidden overflow-x-auto scroll-smooth pb-8 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
           <div className="flex gap-6 px-6" style={{ width: 'max-content' }}>
             {signatureDrinks.map((drink, idx) => {
               const isFlipped = selectedCard === idx;
@@ -451,8 +465,90 @@ function MenuSection() {
           </div>
         </div>
 
+        {/* Tablet/iPad Pro: 3-Column Grid */}
+        <div className="hidden lg:grid xl:hidden grid-cols-3 gap-6 px-6 pb-8">
+          {signatureDrinks.map((drink, idx) => {
+            const isFlipped = selectedCard === idx;
+            return (
+              <div
+                key={idx}
+                className="w-full h-[400px] relative group perspective-1000"
+                onClick={() => handleCardClick(idx)}
+              >
+                <motion.div
+                  className="relative w-full h-full"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  transition={{ duration: 0.6 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {/* Front Side */}
+                  <div
+                    className="absolute inset-0 rounded-[32px] overflow-hidden"
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="absolute inset-0">
+                      <Image
+                        src={drink.image}
+                        alt={`${drink.name} signature cocktail at LITTLE LAO`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(min-width: 1024px) and (max-width: 1279px) 33vw, 320px"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                      <h3
+                        className="text-2xl text-white mb-2"
+                        style={{ fontFamily: "'Koblenz'" }}
+                      >
+                        {drink.name}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Back Side */}
+                  <div
+                    className="absolute inset-0 rounded-[32px] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#D4AF37]/30 flex flex-col items-center justify-start px-6 text-center"
+                    style={{
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                      paddingTop: '100px',
+                      paddingBottom: '24px'
+                    }}
+                  >
+                    <div className="inline-block relative" style={{ marginBottom: '32px' }}>
+                      <h3
+                        className="text-xl text-[#D4AF37] mb-4"
+                        style={{ fontFamily: "'Koblenz'" }}
+                      >
+                        {drink.name}
+                      </h3>
+                      <div
+                        className="h-0.5 w-full rounded-full bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
+                      />
+                    </div>
+                    <p
+                      className="text-white/90 text-sm leading-loose"
+                      style={{ fontFamily: "'Cause'" }}
+                    >
+                      {drink.ingredients.split(' / ').map((ingredient, i) => (
+                        <span key={i} className="block mb-2">
+                          {ingredient}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            );
+          })}
+        </div>
+
         {/* Desktop: Drag to Scroll Carousel */}
-        <div className="hidden lg:block w-full overflow-hidden" style={{ paddingLeft: '170px' }}>
+        <div className="hidden xl:block w-full overflow-hidden" style={{ paddingLeft: '170px' }}>
           <motion.div
             className="flex gap-6 pb-4 cursor-grab active:cursor-grabbing"
             drag="x"
@@ -597,9 +693,11 @@ function FoodMenuSection() {
   return (
     <section
       id="food-menu"
-      className="glp-section relative bg-black/50 overflow-hidden"
+      className="glp-section relative bg-black/50 xl:bg-black/70 overflow-hidden"
       style={{ paddingTop: '60px', paddingBottom: '80px' }}
     >
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
@@ -663,7 +761,7 @@ function FoodMenuSection() {
             {foodItems.map((food, idx) => (
               <motion.div
                 key={idx}
-                className="group border-b border-[#A1A1AA]/20 pb-8 last:border-b-0 text-center"
+                className="group border-b border-[#A1A1AA]/20 pt-20 pb-8 last:border-b-0 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -766,9 +864,11 @@ function GallerySection() {
   return (
     <section
       id="gallery"
-      className="w-full bg-black/40"
+      className="w-full bg-black/40 xl:bg-black/70 relative"
       style={{ paddingTop: '40px', paddingBottom: '60px' }}
     >
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Title */}
@@ -854,9 +954,11 @@ function GallerySection() {
 // ========== FOOTER ==========
 function Footer() {
   return (
-    <footer id="contact-us" className="bg-gradient-to-b from-black/40 to-black/80 flex flex-col" style={{ minHeight: '600px', paddingTop: '40px' }}>
+    <footer id="contact-us" className="bg-gradient-to-b from-black/40 to-black/80 xl:from-black/70 xl:to-black/70 flex flex-col relative" style={{ minHeight: '600px', paddingTop: '40px' }}>
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
-      <div className="w-full px-6 md:px-8" style={{ paddingBottom: '40px' }}>
+      <div className="w-full px-6 sm:px-8" style={{ paddingBottom: '40px' }}>
 
         {/* Divider Line - Moved Inside */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" style={{ marginTop: '100px', marginBottom: '0px' }} />
@@ -870,16 +972,50 @@ function Footer() {
           />
         </div>
 
-        {/* Desktop Footer - Original Layout */}
-        <div className="hidden md:flex md:flex-row gap-16 justify-center items-start" style={{ marginTop: '-60px' }}>
+        {/* Desktop/Tablet Footer - Row Layout */}
+        <div className="hidden sm:flex sm:flex-row gap-6 md:gap-10 lg:gap-16 justify-center items-start" style={{ marginTop: '-60px' }}>
           {/* Location */}
           <div className="flex items-start gap-4">
             <MapPin size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
-              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                Sisavangvong Road<br />
-                Luang Prabang, Laos
-              </p>
+              <a href="https://www.google.com/maps/dir//Little+Lao+Culture+Bar,+Banh+Xiangmuon,+Luang+Prabang/@19.8880194,102.1371286,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x312f2b00578d64ad:0x81e957fdc09772d7!2m2!1d102.1386042!2d19.8930794" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#D4AF37] transition-colors">
+                <p className="text-sm md:text-lg lg:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                  Banh Xiangmuon 33<br />
+                  Luang Prabang, Laos
+                </p>
+              </a>
+              <a
+                href="https://www.google.com/maps/dir//Little+Lao+Culture+Bar,+Banh+Xiangmuon,+Luang+Prabang/@19.8880194,102.1371286,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x312f2b00578d64ad:0x81e957fdc09772d7!2m2!1d102.1386042!2d19.8930794"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3"
+                style={{
+                  marginTop: '1.25rem',
+                  paddingLeft: '1rem',
+                  paddingRight: '1rem',
+                  paddingTop: '0.5rem',
+                  paddingBottom: '0.5rem',
+                  backgroundColor: '#000000',
+                  border: '1px solid #D4AF37',
+                  borderRadius: '9999px',
+                  color: '#D4AF37',
+                  fontSize: '0.8125rem',
+                  fontFamily: "var(--font-lato)",
+                  transition: 'all 0.3s',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#D4AF37';
+                  e.currentTarget.style.color = '#000000';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#000000';
+                  e.currentTarget.style.color = '#D4AF37';
+                }}
+              >
+                <MapPin size={15} className="flex-shrink-0" />
+                <span>View on Map</span>
+              </a>
             </div>
           </div>
 
@@ -887,7 +1023,7 @@ function Footer() {
           <div className="flex items-start gap-4">
             <Clock size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
-              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+              <p className="text-white/80 text-sm md:text-lg lg:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
                 Mon - Thurs: 6pm - 1am<br />
                 Fri: 6pm - 2am<br />
                 Sat: 3pm - 2am
@@ -899,14 +1035,14 @@ function Footer() {
           <div className="flex items-start gap-4">
             <Phone size={28} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
-              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                +856 71 254 678
+              <p className="text-white/80 text-sm md:text-lg lg:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                +85620 5199 8998
               </p>
-              <p className="text-white/80 text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+              <p className="text-white/80 text-sm md:text-lg lg:text-xl leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
                 info@littlelao.la
               </p>
               <div className="flex gap-3" style={{ marginTop: '15px' }}>
-                <a href="#" className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                <a href="https://www.facebook.com/profile.php?id=61558591208405" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
                   <Facebook size={16} className="text-[#D4AF37] group-hover:text-black transition-colors" />
                 </a>
                 <a href="#" className="w-10 h-10 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
@@ -921,15 +1057,49 @@ function Footer() {
         </div>
 
         {/* Mobile Footer - 2 Column Grid */}
-        <div className="md:hidden grid grid-cols-2 gap-6" style={{ marginTop: '-60px' }}>
+        <div className="sm:hidden grid grid-cols-2 gap-6" style={{ marginTop: '-60px' }}>
           {/* Left Column: Location */}
           <div className="flex items-start gap-3">
             <MapPin size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
             <div>
-              <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                Sisavangvong Road<br />
-                Luang Prabang, Laos
-              </p>
+              <a href="https://www.google.com/maps/dir//Little+Lao+Culture+Bar,+Banh+Xiangmuon,+Luang+Prabang/@19.8880194,102.1371286,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x312f2b00578d64ad:0x81e957fdc09772d7!2m2!1d102.1386042!2d19.8930794" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#D4AF37] transition-colors">
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
+                  Banh Xiangmuon 33<br />
+                  Luang Prabang, Laos
+                </p>
+              </a>
+              <a
+                href="https://www.google.com/maps/dir//Little+Lao+Culture+Bar,+Banh+Xiangmuon,+Luang+Prabang/@19.8880194,102.1371286,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x312f2b00578d64ad:0x81e957fdc09772d7!2m2!1d102.1386042!2d19.8930794"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+                style={{
+                  marginTop: '1rem',
+                  paddingLeft: '0.875rem',
+                  paddingRight: '0.875rem',
+                  paddingTop: '0.375rem',
+                  paddingBottom: '0.375rem',
+                  backgroundColor: '#000000',
+                  border: '1px solid #D4AF37',
+                  borderRadius: '9999px',
+                  color: '#D4AF37',
+                  fontSize: '0.75rem',
+                  fontFamily: "var(--font-lato)",
+                  transition: 'all 0.3s',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#D4AF37';
+                  e.currentTarget.style.color = '#000000';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#000000';
+                  e.currentTarget.style.color = '#D4AF37';
+                }}
+              >
+                <MapPin size={14} className="flex-shrink-0" />
+                <span>View on Map</span>
+              </a>
             </div>
           </div>
 
@@ -952,13 +1122,13 @@ function Footer() {
               <Phone size={24} className="text-[#D4AF37] flex-shrink-0 mt-1" strokeWidth={1.5} />
               <div>
                 <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
-                  +856 71 254 678
+                  +85620 5199 8998
                 </p>
                 <p className="text-white/80 text-sm leading-relaxed" style={{ fontFamily: "var(--font-lato)" }}>
                   info@littlelao.la
                 </p>
                 <div className="flex gap-2" style={{ marginTop: '10px' }}>
-                  <a href="#" className="w-8 h-8 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
+                  <a href="https://www.facebook.com/profile.php?id=61558591208405" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">
                     <Facebook size={14} className="text-[#D4AF37] group-hover:text-black transition-colors" />
                   </a>
                   <a href="#" className="w-8 h-8 border border-[#D4AF37]/50 rounded-full flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] group transition-all duration-300">

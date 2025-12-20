@@ -88,7 +88,7 @@ const RestaurantMenuCard = ({ item, index, isPriority = false }: MenuCardProps) 
     return (
         <div className="glp-no-shift">
             <motion.div
-                className="glp-movable group relative flex flex-col items-center w-[45%] md:w-[30%] lg:w-[22%] xl:w-[18%] min-w-[140px] px-2"
+                className="glp-movable group relative flex flex-col items-center w-full min-w-[140px] px-2"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -304,16 +304,10 @@ export default function MenuPage() {
                             </header>
 
                             <div className="max-w-7xl mx-auto">
-                                <div className="flex flex-col gap-y-16">
-                                    {[0, 1, 2].map((rowIndex) => (
-                                        <React.Fragment key={rowIndex}>
-                                            <RowDivider />
-                                            <div className="flex flex-wrap justify-center gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
-                                                {foodItems.slice(rowIndex * 4, (rowIndex + 1) * 4).map((item, idx) => (
-                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} isPriority={view === "food" && (idx + rowIndex * 4) < 4} />
-                                                ))}
-                                            </div>
-                                        </React.Fragment>
+                                <RowDivider />
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
+                                    {foodItems.map((item, idx) => (
+                                        <RestaurantMenuCard key={item.id} item={item} index={idx} isPriority={view === "food" && idx < 4} />
                                     ))}
                                 </div>
                             </div>
@@ -344,16 +338,10 @@ export default function MenuPage() {
                             </header>
 
                             <div className="max-w-7xl mx-auto">
-                                <div className="flex flex-col gap-y-16">
-                                    {[0, 1, 2].map((rowIndex) => (
-                                        <React.Fragment key={rowIndex}>
-                                            <RowDivider />
-                                            <div className="flex flex-wrap justify-center gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
-                                                {drinkItems.slice(rowIndex * 4, (rowIndex + 1) * 4).map((item, idx) => (
-                                                    <RestaurantMenuCard key={item.id} item={item} index={idx + rowIndex * 4} isPriority={view === "drinks" && (idx + rowIndex * 4) < 4} />
-                                                ))}
-                                            </div>
-                                        </React.Fragment>
+                                <RowDivider />
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-4 md:gap-x-8 lg:gap-x-10">
+                                    {drinkItems.map((item, idx) => (
+                                        <RestaurantMenuCard key={item.id} item={item} index={idx} isPriority={view === "drinks" && idx < 4} />
                                     ))}
                                 </div>
                             </div>

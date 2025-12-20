@@ -25,7 +25,7 @@ export default function Navbar() {
                             <Link
                                 key={link}
                                 href={href}
-                                className="text-xs sm:text-sm md:text-xs tracking-[0.15em] sm:tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors"
+                                className="text-[10px] sm:text-sm md:text-xs tracking-[0.15em] sm:tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors"
                                 style={{ fontFamily: "var(--font-lato)" }}
                             >
                                 {link}

@@ -72,21 +72,21 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BarOrRestaurant",
-    "name": "LITTLE LAO",
+    "name": "Little Lao Culture Bar",
     "image": "https://littlelao.la/about-lao-bar.webp",
     "@id": "https://littlelao.la",
     "url": "https://littlelao.la",
-    "telephone": "+85671254678",
+    "telephone": "+85620 5199 8998",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Sisavangvong Road",
+      "streetAddress": "Banh Xiangmuon 33",
       "addressLocality": "Luang Prabang",
       "addressCountry": "LA"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 19.892,
-      "longitude": 102.134
+      "latitude": 19.8930794,
+      "longitude": 102.1386042
     },
     "openingHoursSpecification": [
       {
