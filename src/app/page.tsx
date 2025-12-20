@@ -52,8 +52,8 @@ function HeroSection() {
           className="object-cover object-top"
         />
         {/* Dark overlay for mobile */}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
       </div>
 
       {/* Desktop Background - with zoom animation */}
@@ -74,8 +74,8 @@ function HeroSection() {
           />
         </div>
         {/* 2. Magic Filters: Dark Luxury Theme */}
-        <div className="absolute inset-0 bg-black/60 xl:bg-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-black/40 xl:bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
       </motion.div>
 
       {/* 3. Content - Flexbox Centered */}
@@ -336,7 +336,7 @@ function MenuSection() {
     <section
       id="menu"
       className="glp-section relative bg-black/60 xl:bg-black/70 overflow-hidden md:pt-[60px] pb-20"
-      style={{ paddingTop: '100px' }}
+      style={{ paddingTop: '100px', paddingBottom: '120px' }}
     >
       {/* Background Image */}
       <div className="absolute inset-0 -z-10 hidden xl:block" style={{ backgroundImage: 'url("/new.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
@@ -548,7 +548,7 @@ function MenuSection() {
         </div>
 
         {/* Desktop: Drag to Scroll Carousel */}
-        <div className="hidden xl:block w-full overflow-hidden" style={{ paddingLeft: '170px' }}>
+        <div className="hidden xl:block w-full overflow-visible" style={{ paddingLeft: '170px' }}>
           <motion.div
             className="flex gap-6 pb-4 cursor-grab active:cursor-grabbing"
             drag="x"
@@ -569,6 +569,8 @@ function MenuSection() {
                     width: '320px',
                     height: '360px',
                     perspective: '1000px',
+                    zIndex: isFlipped ? 50 : 1,
+                    position: 'relative',
                   }}
                   onClick={() => handleCardClick(idx)}
                 >
