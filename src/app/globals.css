@@ -44,6 +44,7 @@
 }
 
 html {
+  background-color: #000000;
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   -webkit-overflow-scrolling: touch;

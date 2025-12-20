@@ -120,12 +120,21 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
+        <meta name="color-scheme" content="dark" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            html, body {
+              background-color: #000000 !important;
+              color: #ffffff;
+            }
+          `
+        }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" style={{ backgroundColor: '#000000' }}>
         <SmoothScroll>
           {children}
         </SmoothScroll>
